@@ -24,7 +24,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private Button getAll;
-    private static final String URL = "https://cs411fa18.web.illinois.edu/phpScripts/ReadAll_Bike.php";
+    private static final String getAllBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/ReadAll_Bike.php";
+    private static final String addBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/Create_Bike.php";
     private RequestQueue requestQueue;
 
     ArrayList<Bike> bikeList;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 count++;
-                JSONProcess1(URL);
+                getAllBikes(getAllBikeURL);
 //                printJsonArray();
 //                printBikeList();
 
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void JSONProcess1(String URL) {
+    private void getAllBikes(String URL) {
         requestQueue = Volley.newRequestQueue(this);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, (String)null,
