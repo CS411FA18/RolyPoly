@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private Button addBike;
     private Button deleteButton;
     private static final String getAllBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/ReadAll_Bike.php";
-    private static final String deleteBikeURL = "";
     private RequestQueue requestQueue;
 
     ArrayList<Bike> bikeList;
@@ -57,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteBike(deleteBikeURL);
                 Intent intent = new Intent(getApplicationContext(), RemoveBikeActivity.class);
                 startActivity(intent);
             }
@@ -87,11 +85,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void deleteBike(String URL) {
-
-    }
-
 
     private void getAllBikes(String URL) {
         requestQueue = Volley.newRequestQueue(this);

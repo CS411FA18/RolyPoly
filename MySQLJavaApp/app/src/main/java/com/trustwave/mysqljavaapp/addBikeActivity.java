@@ -58,15 +58,15 @@ public class addBikeActivity extends AppCompatActivity {
         addBikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String UINStr = editUIN.getText().toString();
-                final String serialNumberStr = editSerialNum.getText().toString();
-                final String makeStr = editMake.getText().toString();
-                final String modelStr = editModel.getText().toString();
-                final String colorStr = editColor.getText().toString();
-                final String descriptionStr = editDescription.getText().toString();
-                final String uniqueCharacteristicsStr = editUniqueCharacteristics.getText().toString();
+                UINText = editUIN.getText().toString();
+                SerialNumberText = editSerialNum.getText().toString();
+                MakeText = editMake.getText().toString();
+                ModelText = editModel.getText().toString();
+                ColorText = editColor.getText().toString();
+                DescriptionText = editDescription.getText().toString();
+                UniqueCharacteristicsText = editUniqueCharacteristics.getText().toString();
 
-                addNewBike(UINStr, serialNumberStr, makeStr, modelStr, colorStr, descriptionStr, uniqueCharacteristicsStr);
+                addNewBike();
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Added New Bike!", Toast.LENGTH_LONG);
                 toast.show();
@@ -74,9 +74,7 @@ public class addBikeActivity extends AppCompatActivity {
         });
     }
 
-    private void addNewBike(final String UINStr,  final String serialNumberStr, final String makeStr,
-                            final String modelStr, final String colorStr, final String descriptionStr,
-                            final String uniqueCharacteristicsStr) {
+    private void addNewBike() {
         requestQueue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, addBikeURL,
@@ -101,21 +99,13 @@ public class addBikeActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("UIN", UINStr);
-                params.put("SerialNumber", serialNumberStr);
-                params.put("Make", makeStr);
-                params.put("Model", modelStr);
-                params.put("Color", colorStr);
-                params.put("Description", descriptionStr);
-                params.put("UniqueCharacteristics", uniqueCharacteristicsStr);
-
-//                params.put("UIN", "673500000");
-//                params.put("SerialNumber", "12345");
-//                params.put("Make", "makeStr");
-//                params.put("Model", "modelStr");
-//                params.put("Color", "colorStr");
-//                params.put("Description", "descriptionStr");
-//                params.put("UniqueCharacteristics", "uniqueCharacteristicsStr");
+                params.put("UIN", UINText);
+                params.put("SerialNumber", SerialNumberText);
+                params.put("Make", MakeText);
+                params.put("Model", ModelText);
+                params.put("Color", ColorText);
+                params.put("Description", DescriptionText);
+                params.put("UniqueCharacteristics", UniqueCharacteristicsText);
 
                 return params;
             }
