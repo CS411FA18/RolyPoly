@@ -29,7 +29,7 @@ public class BikeList extends AppCompatActivity {
 
         bikeList = intent.getParcelableArrayListExtra("BikeList");
 
-        ArrayAdapter<Bike> arrayAdapter = new ArrayAdapter<Bike>(this, R.layout.activity_bike_list, R.id.bikeText, bikeList);
+        ArrayAdapter<Bike> arrayAdapter = new ArrayAdapter<Bike>(this, R.layout.activity_bike_list_element, R.id.bikeText, bikeList);
 
         ListView listView = (ListView) findViewById(R.id.Bike_List);
 

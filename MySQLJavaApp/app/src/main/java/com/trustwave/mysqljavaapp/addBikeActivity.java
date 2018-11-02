@@ -25,30 +25,46 @@ public class addBikeActivity extends AppCompatActivity {
     private Button addBikeButton;
     private static final String addBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/Create_Bike.php";
 
+    private EditText editUIN;
+    private EditText editSerialNum;
+    private EditText editMake;
+    private EditText editModel;
+    private EditText editColor;
+    private EditText editDescription;
+    private EditText editUniqueCharacteristics;
+
+    String UINText;
+    String SerialNumberText;
+    String MakeText;
+    String ModelText;
+    String ColorText;
+    String DescriptionText;
+    String UniqueCharacteristicsText;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bike);
 
-        final EditText UINText = findViewById(R.id.UINText);
-        final EditText serialNumberText = findViewById(R.id.SerialNumberText);
-        final EditText makeText = findViewById(R.id.MakeText);
-        final EditText modelText = findViewById(R.id.ModelText);
-        final EditText colorText = findViewById(R.id.ColorText);
-        final EditText descriptionText = findViewById(R.id.DescriptionText);
-        final EditText uniqueCharacteristicsText = findViewById(R.id.UniqueCharacteristicsText);
+        editUIN = findViewById(R.id.UINText);
+        editSerialNum = findViewById(R.id.SerialNumberText);
+        editMake = findViewById(R.id.MakeText);
+        editModel = findViewById(R.id.ModelText);
+        editColor = findViewById(R.id.ColorText);
+        editDescription = findViewById(R.id.DescriptionText);
+        editUniqueCharacteristics = findViewById(R.id.UniqueCharacteristicsText);
 
         addBikeButton = findViewById(R.id.addBikeButton);
         addBikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String UINStr = UINText.getText().toString();
-                final String serialNumberStr = serialNumberText.getText().toString();
-                final String makeStr = makeText.getText().toString();
-                final String modelStr = modelText.getText().toString();
-                final String colorStr = colorText.getText().toString();
-                final String descriptionStr = descriptionText.getText().toString();
-                final String uniqueCharacteristicsStr = uniqueCharacteristicsText.getText().toString();
+                final String UINStr = editUIN.getText().toString();
+                final String serialNumberStr = editSerialNum.getText().toString();
+                final String makeStr = editMake.getText().toString();
+                final String modelStr = editModel.getText().toString();
+                final String colorStr = editColor.getText().toString();
+                final String descriptionStr = editDescription.getText().toString();
+                final String uniqueCharacteristicsStr = editUniqueCharacteristics.getText().toString();
 
                 addNewBike(UINStr, serialNumberStr, makeStr, modelStr, colorStr, descriptionStr, uniqueCharacteristicsStr);
 
