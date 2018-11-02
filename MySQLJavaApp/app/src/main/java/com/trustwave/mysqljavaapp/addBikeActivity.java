@@ -67,7 +67,6 @@ public class addBikeActivity extends AppCompatActivity {
                 UniqueCharacteristicsText = editUniqueCharacteristics.getText().toString();
 
                 addNewBike();
-
                 Toast toast = Toast.makeText(getApplicationContext(), "Added New Bike!", Toast.LENGTH_LONG);
                 toast.show();
             }
@@ -111,5 +110,6 @@ public class addBikeActivity extends AppCompatActivity {
             }
         };
         requestQueue.add(stringRequest);
+
     }
 }

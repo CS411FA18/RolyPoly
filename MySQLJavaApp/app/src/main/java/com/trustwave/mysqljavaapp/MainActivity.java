@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private Button deleteButton;
     private Button updateBikeButton;
     private static final String getAllBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/ReadAll_Bike.php";
+
+    private Button searchButton;
+
     private RequestQueue requestQueue;
 
     ArrayList<Bike> bikeList;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         updateBikeButton = findViewById(R.id.updateBikeButton);
         addBike = findViewById(R.id.addBike);
         deleteButton = findViewById(R.id.deleteButton);
+        searchButton = findViewById(R.id.searchButtonMain);
 
         jsonResults = new ArrayList<JSONObject>();
 
@@ -58,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UpdateBikeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchForBikeActivity.class);
                 startActivity(intent);
             }
         });
@@ -86,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 //                printJsonArray();
 //                printBikeList();
 
-                if(count == 3) {
+                if (count == 3) {
                     Intent intent = new Intent(getApplicationContext(), BikeList.class);
                     intent.putParcelableArrayListExtra("BikeList", bikeList);
                     startActivity(intent);
@@ -95,10 +107,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     private void getAllBikes(String URL) {
         requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, (String)null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, (String) null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -109,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                                 jsonResults.add(jsonArray.getJSONObject(i));
                             }
 
-                            for(int i = 0; i < jsonArray.length(); i++){
+                            for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 Gson gson = new Gson();
 
@@ -138,17 +151,17 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void printJsonArray(){
+    private void printJsonArray() {
 //        int spacesToIndentEachLevel = 2;
 
-        for(int i = 0; i < jsonResults.size(); i++){
+        for (int i = 0; i < jsonResults.size(); i++) {
             JSONObject object = jsonResults.get(i);
             System.out.println(object.toString());
         }
     }
 
-    private void printBikeList(){
-        for (int i = 0; i < bikeList.size(); i++){
+    private void printBikeList() {
+        for (int i = 0; i < bikeList.size(); i++) {
             System.out.println("Bike Serial Number: " + bikeList.get(i).serialNumber);
         }
     }
