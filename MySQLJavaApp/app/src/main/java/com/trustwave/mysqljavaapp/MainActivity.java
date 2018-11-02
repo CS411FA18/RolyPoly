@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private Button getAll;
     private Button addBike;
     private Button deleteButton;
+    private Button searchButton;
+
     private static final String getAllBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/ReadAll_Bike.php";
     private static final String deleteBikeURL = "";
     private RequestQueue requestQueue;
@@ -49,10 +51,19 @@ public class MainActivity extends AppCompatActivity {
         addBike = findViewById(R.id.addBike);
 
         deleteButton = findViewById(R.id.deleteButton);
+        searchButton = findViewById(R.id.searchButtonMain);
 
         jsonResults = new ArrayList<JSONObject>();
 
         bikeList = new ArrayList<Bike>();
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchForBikeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

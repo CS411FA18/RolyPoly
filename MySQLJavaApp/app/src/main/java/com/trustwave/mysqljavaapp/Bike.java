@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Bike implements Parcelable {
 
     @SerializedName("TagID")
@@ -142,12 +145,25 @@ public class Bike implements Parcelable {
     public String toString() {
         return
                 "TagID = " + tagID.toString() + '\n' +
-                "UIN = " + UIN.toString() + '\n' +
-                "SerialNumber = " + serialNumber + '\n' +
-                "BikeMake = " + bikeMake + '\n' +
-                "Model = " + model + '\n' +
-                "BikeColor = " + bikeColor + '\n' +
-                "BikeDescription = " + bikeDescription + '\n' +
-                "UniqueCharacteristics = " + uniqueCharacteristics + '\n';
+                        "UIN = " + UIN.toString() + '\n' +
+                        "SerialNumber = " + serialNumber + '\n' +
+                        "BikeMake = " + bikeMake + '\n' +
+                        "Model = " + model + '\n' +
+                        "BikeColor = " + bikeColor + '\n' +
+                        "BikeDescription = " + bikeDescription + '\n' +
+                        "UniqueCharacteristics = " + uniqueCharacteristics + '\n';
+    }
+
+    public static String jsonToString(JSONObject jsonObject) throws JSONException {
+        jsonObject = jsonObject.getJSONObject("data");
+        return
+                "TagID = " + jsonObject.get("TagID") + '\n' +
+                        "UIN = " + jsonObject.get("UIN") + '\n' +
+                        "SerialNumber = " +jsonObject.get("SerialNumber")+ '\n' +
+                        "BikeMake = " + jsonObject.get("Make") + '\n' +
+                        "Model = " + jsonObject.get("Model") + '\n' +
+                        "BikeColor = " + jsonObject.get("Color") + '\n' +
+                        "BikeDescription = " + jsonObject.get("Description") + '\n' +
+                        "UniqueCharacteristics = " + jsonObject.get("UniqueCharacteristics") + '\n';
     }
 }
