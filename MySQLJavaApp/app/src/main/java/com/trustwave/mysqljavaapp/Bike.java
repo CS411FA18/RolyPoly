@@ -7,6 +7,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class Bike implements Parcelable {
 
+    @SerializedName("TagID")
+    Integer tagID;
+    @SerializedName("UIN")
+    Integer UIN;
     @SerializedName("SerialNumber")
     String serialNumber;
     @SerializedName("Make")
@@ -17,18 +21,20 @@ public class Bike implements Parcelable {
     String bikeColor;
     @SerializedName("Description")
     String bikeDescription;
-    @SerializedName("Owner")
-    String bikeOwner;
+    @SerializedName("UniqueCharacteristics")
+    String uniqueCharacteristics;
 
     public Bike() { }
 
-    public Bike(String serialNumber, String bikeMake, String model, String bikeColor, String bikeDescription, String bikeOwner) {
+    public Bike(Integer tagID, Integer UIN, String serialNumber, String bikeMake, String model, String bikeColor, String bikeDescription, String uniqueCharacteristics) {
+        this.tagID = tagID;
+        this.UIN = UIN;
         this.serialNumber = serialNumber;
         this.bikeMake = bikeMake;
         this.model = model;
         this.bikeColor = bikeColor;
         this.bikeDescription = bikeDescription;
-        this.bikeOwner = bikeOwner;
+        this.uniqueCharacteristics = uniqueCharacteristics;
     }
 
     @Override
@@ -38,12 +44,14 @@ public class Bike implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(tagID);
+        dest.writeInt(UIN);
         dest.writeString(serialNumber);
         dest.writeString(bikeMake);
         dest.writeString(model);
         dest.writeString(bikeColor);
         dest.writeString(bikeDescription);
-        dest.writeString(bikeOwner);
+        dest.writeString(uniqueCharacteristics);
     }
 
     public static final Parcelable.Creator<Bike> CREATOR = new Parcelable.Creator<Bike>() {
@@ -56,12 +64,14 @@ public class Bike implements Parcelable {
     };
 
     public Bike(Parcel pc) {
+        tagID = pc.readInt();
+        UIN = pc.readInt();
         serialNumber = pc.readString();
         bikeMake = pc.readString();
         model = pc.readString();
         bikeColor = pc.readString();
         bikeDescription = pc.readString();
-        bikeOwner = pc.readString();
+        uniqueCharacteristics = pc.readString();
     }
 
     public String getSerialNumber() {
@@ -104,22 +114,40 @@ public class Bike implements Parcelable {
         this.bikeDescription = bikeDescription;
     }
 
-    public String getBikeOwner() {
-        return bikeOwner;
+    public Integer getTagID() {
+        return tagID;
     }
 
-    public void setBikeOwner(String bikeOwner) {
-        this.bikeOwner = bikeOwner;
+    public void setTagID(Integer tagID) {
+        this.tagID = tagID;
+    }
+
+    public Integer getUIN() {
+        return UIN;
+    }
+
+    public void setUIN(Integer UIN) {
+        this.UIN = UIN;
+    }
+
+    public String getUniqueCharacteristics() {
+        return uniqueCharacteristics;
+    }
+
+    public void setUniqueCharacteristics(String uniqueCharacteristics) {
+        this.uniqueCharacteristics = uniqueCharacteristics;
     }
 
     @Override
     public String toString() {
         return
-                "SerialNumber= " + serialNumber + '\n' +
-                "BikeMake=" + bikeMake + '\n' +
-                "Model=" + model + '\n' +
-                "BikeColor=" + bikeColor + '\n' +
-                "BikeDescription=" + bikeDescription + '\n' +
-                "BikeOwner=" + bikeOwner + '\n';
+                "TagID = " + tagID.toString() + '\n' +
+                "UIN = " + UIN.toString() + '\n' +
+                "SerialNumber = " + serialNumber + '\n' +
+                "BikeMake = " + bikeMake + '\n' +
+                "Model = " + model + '\n' +
+                "BikeColor = " + bikeColor + '\n' +
+                "BikeDescription = " + bikeDescription + '\n' +
+                "UniqueCharacteristics = " + uniqueCharacteristics + '\n';
     }
 }

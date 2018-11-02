@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private Button addBike;
     private Button deleteButton;
     private static final String getAllBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/ReadAll_Bike.php";
-    private static final String addBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/Create_Bike.php";
     private static final String deleteBikeURL = "";
     private RequestQueue requestQueue;
 
@@ -67,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
         addBike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addNewBike(addBikeURL);
-
                 Intent intent = new Intent(getApplicationContext(), addBikeActivity.class);
                 startActivity(intent);
             }
@@ -82,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 //                printJsonArray();
 //                printBikeList();
 
-                if(count == 2) {
+                if(count == 3) {
                     Intent intent = new Intent(getApplicationContext(), BikeList.class);
                     intent.putParcelableArrayListExtra("BikeList", bikeList);
                     startActivity(intent);
@@ -92,11 +89,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteBike(String URL) {
-
-    }
-
-
-    private void addNewBike(String URL) {
 
     }
 
