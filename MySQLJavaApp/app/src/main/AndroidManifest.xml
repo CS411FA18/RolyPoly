@@ -24,7 +24,9 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".Welcome" />
-        <activity android:name=".BikeList"></activity>
+        <activity android:name=".BikeList" />
+        <activity android:name=".addBikeActivity" />
+        <activity android:name=".RemoveBikeActivity"></activity>
     </application>
 
 </manifest>

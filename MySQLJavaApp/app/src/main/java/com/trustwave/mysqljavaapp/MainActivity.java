@@ -24,8 +24,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private Button getAll;
+    private Button addBike;
+    private Button deleteButton;
     private static final String getAllBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/ReadAll_Bike.php";
     private static final String addBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/Create_Bike.php";
+    private static final String deleteBikeURL = "";
     private RequestQueue requestQueue;
 
     ArrayList<Bike> bikeList;
@@ -44,9 +47,32 @@ public class MainActivity extends AppCompatActivity {
 
         getAll = findViewById(R.id.getAll);
 
+        addBike = findViewById(R.id.addBike);
+
+        deleteButton = findViewById(R.id.deleteButton);
+
         jsonResults = new ArrayList<JSONObject>();
 
         bikeList = new ArrayList<Bike>();
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteBike(deleteBikeURL);
+                Intent intent = new Intent(getApplicationContext(), RemoveBikeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        addBike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNewBike(addBikeURL);
+
+                Intent intent = new Intent(getApplicationContext(), addBikeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         getAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +89,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void deleteBike(String URL) {
+
+    }
+
+
+    private void addNewBike(String URL) {
+
     }
 
 
