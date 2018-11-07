@@ -21,12 +21,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class BikeManage extends AppCompatActivity {
 
     private Button getAll;
     private Button addBike;
     private Button deleteButton;
     private Button updateBikeButton;
+
+    @BindView(R.id.toolbar_bike_manage)
+    public android.support.v7.widget.Toolbar toolbar;
+
     private static final String getAllBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/ReadAll_Bike.php";
 
     private Button searchButton;
@@ -46,6 +53,14 @@ public class BikeManage extends AppCompatActivity {
 //        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bike_manage);
+
+
+        ButterKnife.bind(this);
+
+        toolbar.setTitle(getResources().getString(R.string.app_name));
+        setSupportActionBar(toolbar);
+
+        DrawerUtil.getDrawer(this, toolbar);
 
         getAll = findViewById(R.id.getAll);
 

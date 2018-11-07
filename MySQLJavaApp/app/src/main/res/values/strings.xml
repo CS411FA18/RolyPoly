@@ -2,4 +2,8 @@
     <string name="app_name">RolyPoly</string>
     <string name="Open">RolyPoly</string>
     <string name="Close">RolyPoly</string>
+    <string name="settings">"Settings"</string>
+    <string name="account">My Bike Profile</string>
+    <string name="about">About</string>
+    <string name="leaderboard">Leaderboard</string>
 </resources>
