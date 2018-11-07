@@ -26,9 +26,10 @@
         <activity android:name=".Welcome" />
         <activity android:name=".BikeList" />
         <activity android:name=".addBikeActivity" />
-        <activity android:name=".RemoveBikeActivity"/>
-        <activity android:name=".UpdateBikeActivity"/>
-        <activity android:name=".SearchForBikeActivity"></activity>
+        <activity android:name=".RemoveBikeActivity" />
+        <activity android:name=".UpdateBikeActivity" />
+        <activity android:name=".SearchForBikeActivity" />
+        <activity android:name=".BikeManage"></activity>
     </application>
 
 </manifest>
