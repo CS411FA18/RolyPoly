@@ -1,4 +1,4 @@
-package com.trustwave.mysqljavaapp;
+package com.cs411.RolyPoly;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.trustwave.mysqljavaapp", appContext.getPackageName());
+        assertEquals("com.trustwave.com.CS411.RolyPoly", appContext.getPackageName());
     }
 }

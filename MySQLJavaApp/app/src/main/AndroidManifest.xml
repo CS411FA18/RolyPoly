@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.trustwave.mysqljavaapp">
+    package="com.cs411.RolyPoly">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

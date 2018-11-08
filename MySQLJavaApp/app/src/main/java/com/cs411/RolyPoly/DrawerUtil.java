@@ -1,4 +1,4 @@
-package com.trustwave.mysqljavaapp;
+package com.cs411.RolyPoly;
 
 import android.app.Activity;
 import android.content.Intent;
