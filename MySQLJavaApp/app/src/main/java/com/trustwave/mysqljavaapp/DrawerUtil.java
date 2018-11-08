@@ -46,8 +46,11 @@ public class DrawerUtil {
                 .withActionBarDrawerToggleAnimated(true)
                 .withCloseOnClick(true)
                 .withSelectedItem(-1)
+                .withDrawerWidthDp(250)
+                .withHeaderPadding(true)
+                .withHeader(R.layout.navigation_header)
                 .addDrawerItems(
-                        drawerEmptyItem,drawerEmptyItem,drawerEmptyItem,
+//                        drawerEmptyItem,drawerEmptyItem,drawerEmptyItem,
                         drawerItemLeaderboard,
                         drawerItemAccount,
                         new DividerDrawerItem(),
