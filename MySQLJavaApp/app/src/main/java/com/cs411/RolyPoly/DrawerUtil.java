@@ -1,6 +1,7 @@
 package com.cs411.RolyPoly;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
@@ -62,15 +63,17 @@ public class DrawerUtil {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        if (drawerItem.getIdentifier() == 1 && !(activity instanceof MainActivity)) {
+                        if (drawerItem.getIdentifier() == 1 ) {
+//                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load tournament screen
                             Intent intent = new Intent(activity, MainActivity.class);
-                            view.getContext().startActivity(intent);
+                            view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
-                        if (drawerItem.getIdentifier() == 2 && !(activity instanceof BikeManage)) {
+                        if (drawerItem.getIdentifier() == 2 ) {
+//                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
                             // load tournament screen
                             Intent intent = new Intent(activity, BikeManage.class);
-                            view.getContext().startActivity(intent);
+                            view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 3) {
                             // load tournament screen
