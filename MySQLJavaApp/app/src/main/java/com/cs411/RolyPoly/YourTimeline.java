@@ -14,6 +14,9 @@ public class YourTimeline extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
 
+    LatLng origin = new LatLng(40.1144, -88.2289);
+    LatLng dest = new LatLng(40.1054, -88.2215);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +42,27 @@ public class YourTimeline extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(40.1, -88.2);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker at ECEB"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng ECEB = new LatLng(40.1, -88.2);
+        mMap.addMarker(new MarkerOptions().position(ECEB).title("Marker at ECEB"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(ECEB));
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.getUiSettings().setCompassEnabled(true);
     }
+
+//    private void drawPolylines() {
+//        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+//        progressDialog.setMessage("Please Wait, Polyline between two locations is building.");
+//        progressDialog.setCancelable(false);
+//        progressDialog.show();
+//
+//        // Checks, whether start and end locations are captured
+//        // Getting URL to the Google Directions API
+//        String url = getDirectionsUrl(origin, dest);
+//        Log.d("url", url + "");
+//        DownloadTask downloadTask = new DownloadTask();
+//        // Start downloading json data from Google Directions API
+//        downloadTask.execute(url);
+//    }
 }
