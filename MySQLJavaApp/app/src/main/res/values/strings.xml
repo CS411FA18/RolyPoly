@@ -6,4 +6,6 @@
     <string name="account">My Bike Profile</string>
     <string name="about">About</string>
     <string name="leaderboard">Leaderboard</string>
+    <string name="timeline">Your Timeline</string>
+    <string name="title_activity_your_timeline">Map</string>
 </resources>

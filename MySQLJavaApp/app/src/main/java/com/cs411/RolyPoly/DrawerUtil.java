@@ -24,11 +24,13 @@ public class DrawerUtil {
                 .withName(R.string.leaderboard).withIcon(R.drawable.ic_person_black_24dp);
         PrimaryDrawerItem drawerItemAccount = new PrimaryDrawerItem()
                 .withIdentifier(2).withName(R.string.account).withIcon(R.drawable.ic_directions_bike_black_24dp);
+        PrimaryDrawerItem drawerItemTimeline = new PrimaryDrawerItem()
+                .withIdentifier(3).withName(R.string.timeline).withIcon(R.drawable.ic_map_black_24dp);
 
 
-        SecondaryDrawerItem drawerItemSettings = new SecondaryDrawerItem().withIdentifier(3)
+        SecondaryDrawerItem drawerItemSettings = new SecondaryDrawerItem().withIdentifier(4)
                 .withName(R.string.settings).withIcon(R.drawable.ic_settings_black_24dp);
-        SecondaryDrawerItem drawerItemAbout = new SecondaryDrawerItem().withIdentifier(4)
+        SecondaryDrawerItem drawerItemAbout = new SecondaryDrawerItem().withIdentifier(5)
                 .withName(R.string.about).withIcon(R.drawable.ic_info_black_24dp);
 //        SecondaryDrawerItem drawerItemHelp = new SecondaryDrawerItem().withIdentifier(5)
 //                .withName(R.string.help).withIcon(R.drawable.ic_help_black_24px);
@@ -54,6 +56,7 @@ public class DrawerUtil {
 //                        drawerEmptyItem,drawerEmptyItem,drawerEmptyItem,
                         drawerItemLeaderboard,
                         drawerItemAccount,
+                        drawerItemTimeline,
                         new DividerDrawerItem(),
                         drawerItemAbout,
                         drawerItemSettings
@@ -75,11 +78,17 @@ public class DrawerUtil {
                             Intent intent = new Intent(activity, BikeManage.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
-                        if (drawerItem.getIdentifier() == 3) {
+                        if (drawerItem.getIdentifier() == 3 ) {
+//                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
+                            // load tournament screen
+                            Intent intent = new Intent(activity, YourTimeline.class);
+                            view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
+                        }
+                        if (drawerItem.getIdentifier() == 4) {
                             // load tournament screen
                             Toast.makeText(activity, R.string.settings, Toast.LENGTH_LONG).show();
                         }
-                        if (drawerItem.getIdentifier() == 4) {
+                        if (drawerItem.getIdentifier() == 5) {
                             // load tournament screen
                             Toast.makeText(activity, R.string.about, Toast.LENGTH_LONG).show();
                         }
