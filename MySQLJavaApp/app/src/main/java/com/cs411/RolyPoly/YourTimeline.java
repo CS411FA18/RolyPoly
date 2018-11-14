@@ -73,6 +73,7 @@ public class YourTimeline extends FragmentActivity implements OnMapReadyCallback
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.getUiSettings().setRotateGesturesEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
     }
 
@@ -111,7 +112,7 @@ public class YourTimeline extends FragmentActivity implements OnMapReadyCallback
                             }
 
                             System.out.println("Printing response");
-                            printNodes();
+                            printNodeName();
 //                            printJsonArray();
 
 
@@ -125,15 +126,20 @@ public class YourTimeline extends FragmentActivity implements OnMapReadyCallback
 
 
 
-//                            if(mMap != null){
+                            if(mMap != null){
 //                                mMap.clear();
-//                                Node node;
-//                                for(int i = 0; i < nodeList.size(); i++){
-//                                    node = nodeList.get(i);
-//                                    tempNode = new LatLng(node.YCoord, node.XCoord);
-//                                    mMap.addMarker(new MarkerOptions().position(tempNode).title(node.Name));
-//                                }
-//                            }
+                                Node node;
+                                for(int i = 0; i < nodeList.size(); i++){
+                                    node = nodeList.get(i);
+                                    tempNode = new LatLng(node.YCoord, node.XCoord);
+                                    mMap.addMarker(new MarkerOptions().position(tempNode).title(node.Name));
+                                    //set camera to zoom on Wright & Daniel (Center Node)
+                                    if(node.Name.equals("Wright & Daniel")) {
+                                        System.out.println("Reached inside if statement");
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(tempNode, 15));
+                                    }
+                                }
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -149,9 +155,9 @@ public class YourTimeline extends FragmentActivity implements OnMapReadyCallback
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void printNodes(){
+    private void printNodeName(){
         for(int i = 0; i < nodeList.size(); i++){
-            System.out.println(nodeList.get(i));
+            System.out.println(nodeList.get(i).Name);
         }
     }
 
@@ -162,5 +168,4 @@ public class YourTimeline extends FragmentActivity implements OnMapReadyCallback
             System.out.println(object.toString());
         }
     }
-
 }
