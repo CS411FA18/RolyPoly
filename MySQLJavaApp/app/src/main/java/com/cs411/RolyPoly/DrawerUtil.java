@@ -94,6 +94,8 @@ public class DrawerUtil {
                         if (drawerItem.getIdentifier() == 5) {
                             // load tournament screen
                             Toast.makeText(activity, R.string.about, Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(activity, AboutActivity.class);
+                            view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         return true;
                     }
