@@ -8,4 +8,11 @@
     <string name="leaderboard">Leaderboard</string>
     <string name="node_map">Node Map</string>
     <string name="title_activity_your_timeline">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_content">Fun and competitive incentive platform to promote biking on the University of Illinois campus.
+        Users will be able to access a web dashboard that shows riding history and milestones achieved.
+        The platform would support competitive leaderboards for campus groups (such as among departments or RSOs) to recognize the top bikers and groups.
+        Administrative users have a platform with congestion analytics for insights into making infrastructure updates to promote bike usage and safety.</string>
 </resources>
