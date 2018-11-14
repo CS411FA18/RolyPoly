@@ -25,7 +25,7 @@ public class DrawerUtil {
         PrimaryDrawerItem drawerItemAccount = new PrimaryDrawerItem()
                 .withIdentifier(2).withName(R.string.account).withIcon(R.drawable.ic_directions_bike_black_24dp);
         PrimaryDrawerItem drawerItemTimeline = new PrimaryDrawerItem()
-                .withIdentifier(3).withName(R.string.timeline).withIcon(R.drawable.ic_map_black_24dp);
+                .withIdentifier(3).withName(R.string.node_map).withIcon(R.drawable.ic_map_black_24dp);
 
 
         SecondaryDrawerItem drawerItemSettings = new SecondaryDrawerItem().withIdentifier(4)
