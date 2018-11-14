@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "45768030060",
+    "firebase_url": "https://mysqljavaapp.firebaseio.com",
+    "project_id": "mysqljavaapp",
+    "storage_bucket": "mysqljavaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45768030060:android:12bd8c32c9bb636c",
+        "android_client_info": {
+          "package_name": "com.cs411.RolyPoly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45768030060-k6ort8q45clgakbp93n3sno21q69euvm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cs411.RolyPoly",
+            "certificate_hash": "c34d9522b42882956736ad51163a3acc97a21039"
+          }
+        },
+        {
+          "client_id": "45768030060-5559nef7c3pio7or4qi8kcn4hq0mgncf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA89VQSWUtAvpaB4LjFSYyFm5K1rzwFEcM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45768030060-5559nef7c3pio7or4qi8kcn4hq0mgncf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
