@@ -111,8 +111,8 @@ public class YourTimeline extends FragmentActivity implements OnMapReadyCallback
                                 nodeList.add(node);
                             }
 
-                            System.out.println("Printing response");
-                            printNodeName();
+//                            System.out.println("Printing response");
+//                            printNodeName();
 //                            printJsonArray();
 
 

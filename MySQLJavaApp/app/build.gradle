@@ -48,7 +48,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
 
     implementation 'com.android.support:design:23.1.1'
-    implementation 'com.google.android.gms:play-services:12.0.1'
+//    implementation 'com.google.android.gms:play-services:12.0.1'
 
 //    implementation 'com.google.android.gms:play-services:9.8.0'
 

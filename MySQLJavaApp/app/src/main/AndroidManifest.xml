@@ -49,7 +49,11 @@
 
         <activity
             android:name=".YourTimeline"
-            android:label="@string/title_activity_your_timeline"></activity>
+            android:label="@string/title_activity_your_timeline" />
+        <activity
+            android:name=".AccountActivity"
+            android:label="@string/title_activity_account"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

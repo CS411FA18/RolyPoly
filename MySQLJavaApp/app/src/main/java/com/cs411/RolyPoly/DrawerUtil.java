@@ -58,8 +58,9 @@ public class DrawerUtil {
                         drawerItemAccount,
                         drawerItemTimeline,
                         new DividerDrawerItem(),
-                        drawerItemAbout,
-                        drawerItemSettings
+                        drawerItemSettings,
+                        drawerItemAbout
+
 //                        drawerItemHelp,
 //                        drawerItemDonate
                 )
@@ -87,6 +88,8 @@ public class DrawerUtil {
                         if (drawerItem.getIdentifier() == 4) {
                             // load tournament screen
                             Toast.makeText(activity, R.string.settings, Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(activity, AccountActivity.class);
+                            view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 5) {
                             // load tournament screen
