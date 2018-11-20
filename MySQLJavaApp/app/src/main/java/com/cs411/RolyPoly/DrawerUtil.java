@@ -20,17 +20,19 @@ public class DrawerUtil {
         PrimaryDrawerItem drawerEmptyItem= new PrimaryDrawerItem().withIdentifier(0).withName("");
         drawerEmptyItem.withEnabled(false);
 
-        PrimaryDrawerItem drawerItemLeaderboard = new PrimaryDrawerItem().withIdentifier(1)
+        PrimaryDrawerItem drawerItemDashboard = new PrimaryDrawerItem().withIdentifier(1)
+                .withName(R.string.dashboard).withIcon(R.drawable.ic_dashboard_black_24dp);
+        PrimaryDrawerItem drawerItemLeaderboard = new PrimaryDrawerItem().withIdentifier(2)
                 .withName(R.string.leaderboard).withIcon(R.drawable.ic_person_black_24dp);
         PrimaryDrawerItem drawerItemAccount = new PrimaryDrawerItem()
-                .withIdentifier(2).withName(R.string.account).withIcon(R.drawable.ic_directions_bike_black_24dp);
+                .withIdentifier(3).withName(R.string.account).withIcon(R.drawable.ic_directions_bike_black_24dp);
         PrimaryDrawerItem drawerItemTimeline = new PrimaryDrawerItem()
-                .withIdentifier(3).withName(R.string.node_map).withIcon(R.drawable.ic_map_black_24dp);
+                .withIdentifier(4).withName(R.string.node_map).withIcon(R.drawable.ic_map_black_24dp);
 
 
-        SecondaryDrawerItem drawerItemSettings = new SecondaryDrawerItem().withIdentifier(4)
+        SecondaryDrawerItem drawerItemSettings = new SecondaryDrawerItem().withIdentifier(5)
                 .withName(R.string.settings).withIcon(R.drawable.ic_settings_black_24dp);
-        SecondaryDrawerItem drawerItemAbout = new SecondaryDrawerItem().withIdentifier(5)
+        SecondaryDrawerItem drawerItemAbout = new SecondaryDrawerItem().withIdentifier(6)
                 .withName(R.string.about).withIcon(R.drawable.ic_info_black_24dp);
 //        SecondaryDrawerItem drawerItemHelp = new SecondaryDrawerItem().withIdentifier(5)
 //                .withName(R.string.help).withIcon(R.drawable.ic_help_black_24px);
@@ -54,6 +56,7 @@ public class DrawerUtil {
                 .withHeader(R.layout.navigation_header)
                 .addDrawerItems(
 //                        drawerEmptyItem,drawerEmptyItem,drawerEmptyItem,
+                        drawerItemDashboard,
                         drawerItemLeaderboard,
                         drawerItemAccount,
                         drawerItemTimeline,
@@ -74,24 +77,30 @@ public class DrawerUtil {
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 2 ) {
-//                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
+//                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load tournament screen
-                            Intent intent = new Intent(activity, BikeManage.class);
+                            Intent intent = new Intent(activity, MainActivity.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 3 ) {
 //                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
                             // load tournament screen
+                            Intent intent = new Intent(activity, BikeManage.class);
+                            view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
+                        }
+                        if (drawerItem.getIdentifier() == 4 ) {
+//                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
+                            // load tournament screen
                             Intent intent = new Intent(activity, YourTimeline.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
-                        if (drawerItem.getIdentifier() == 4) {
+                        if (drawerItem.getIdentifier() == 5) {
                             // load tournament screen
                             Toast.makeText(activity, R.string.settings, Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(activity, AccountActivity.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
-                        if (drawerItem.getIdentifier() == 5) {
+                        if (drawerItem.getIdentifier() == 6) {
                             // load tournament screen
                             Toast.makeText(activity, R.string.about, Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(activity, AboutActivity.class);
