@@ -78,13 +78,13 @@ public class DrawerUtil {
                         if (drawerItem.getIdentifier() == 1 ) {
 //                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load tournament screen
-                            Intent intent = new Intent(activity, MainActivity.class);
+                            Intent intent = new Intent(activity, DashboardActivity.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 2 ) {
 //                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load tournament screen
-                            Intent intent = new Intent(activity, MainActivity.class);
+                            Intent intent = new Intent(activity, DashboardActivity.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 3 ) {

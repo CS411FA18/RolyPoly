@@ -52,4 +52,3 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:15.0.0'
     implementation 'com.github.shinelw:library:1.0.1'
 }
-
