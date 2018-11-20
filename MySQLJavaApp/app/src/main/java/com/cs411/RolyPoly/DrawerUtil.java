@@ -34,6 +34,10 @@ public class DrawerUtil {
                 .withName(R.string.settings).withIcon(R.drawable.ic_settings_black_24dp);
         SecondaryDrawerItem drawerItemAbout = new SecondaryDrawerItem().withIdentifier(6)
                 .withName(R.string.about).withIcon(R.drawable.ic_info_black_24dp);
+
+        /* Found this icon on the material design icon page https://materialdesignicons.com */
+        SecondaryDrawerItem drawerItemSignOut = new SecondaryDrawerItem().withIdentifier(7)
+                .withName(R.string.signOut).withIcon(R.drawable.ic_logout);
 //        SecondaryDrawerItem drawerItemHelp = new SecondaryDrawerItem().withIdentifier(5)
 //                .withName(R.string.help).withIcon(R.drawable.ic_help_black_24px);
 //        SecondaryDrawerItem drawerItemDonate = new SecondaryDrawerItem().withIdentifier(6)
@@ -52,7 +56,7 @@ public class DrawerUtil {
                 .withCloseOnClick(true)
                 .withSelectedItem(-1)
                 .withDrawerWidthDp(250)
-                .withHeaderPadding(true)
+                .withHeaderPadding(false)
                 .withHeader(R.layout.navigation_header)
                 .addDrawerItems(
 //                        drawerEmptyItem,drawerEmptyItem,drawerEmptyItem,
@@ -62,7 +66,8 @@ public class DrawerUtil {
                         drawerItemTimeline,
                         new DividerDrawerItem(),
                         drawerItemSettings,
-                        drawerItemAbout
+                        drawerItemAbout,
+                        drawerItemSignOut
 
 //                        drawerItemHelp,
 //                        drawerItemDonate
@@ -104,6 +109,12 @@ public class DrawerUtil {
                             // load tournament screen
                             Toast.makeText(activity, R.string.about, Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(activity, AboutActivity.class);
+                            view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
+                        }
+                        if (drawerItem.getIdentifier() == 7) {
+                            // load tournament screen
+                            Toast.makeText(activity, "Signed Out", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(activity, LoginActivity.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         return true;
