@@ -60,14 +60,16 @@
         app:front_width="10dp"
         app:is_need_content="true"
         app:is_need_unit="true"
+        app:is_need_title="true"
+        app:string_title="Your Weekly Ping Goal: 100"
+        app:max_value="100"
+        app:string_unit="Pings"
+        app:total_engle="270"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dashboard"
-        app:layout_constraintVertical_bias="0.394"
-        app:max_value="100"
-        app:string_unit="Pings"
-        app:total_engle="270" />
+        app:layout_constraintVertical_bias="0.394"/>
 
         <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_main"
