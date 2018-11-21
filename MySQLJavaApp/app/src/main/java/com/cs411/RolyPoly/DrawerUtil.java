@@ -114,7 +114,10 @@ public class DrawerUtil {
                         if (drawerItem.getIdentifier() == 7) {
                             // load tournament screen
                             Toast.makeText(activity, "Signed Out", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(activity, LoginActivity.class);
+//                            MainActivity.launch(text);
+//                            Log.d(TAG, text);
+                            Intent intent = new Intent(activity, MainActivity.class);
+                            intent.putExtra("signOut", 1);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         return true;
