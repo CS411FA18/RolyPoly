@@ -17,13 +17,27 @@ public class MainActivity extends AppCompatActivity {
     private static int RC_SIGN_IN = 123;
     static Context mContext;
 
-    FirebaseAuth mFirebaseAuth;
-    FirebaseUser mFirebaseUser;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+        if(mFirebaseUser == null){
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+        else {
+            String mEmailAddress = mFirebaseUser.getEmail();
+            startActivity(new Intent(this, DashboardActivity.class));
+        }
 
 //        try {
 //            Bundle bundle = getIntent().getExtras();
@@ -49,14 +63,14 @@ public class MainActivity extends AppCompatActivity {
 //            Toast.makeText(getApplicationContext(), "Exception", Toast.LENGTH_LONG).show();
 //        }
 
-        instantiateUser();
+//        instantiateUser();
 
 //        logOutUser();
 //
 //        if(isUserSignedIn()){
 //            logOutUser();
 //        }
-        loginUser();
+//        loginUser();
 //        refreshUser();
 //        if(!isUserSignedIn()) {
 //            loginUser();
@@ -65,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
 //        while (!isUserSignedIn());
 //
 //        if(isUserSignedIn()){
-            Intent s = new Intent(getApplicationContext(), DashboardActivity.class);
-            startActivity(s);
+//            Intent s = new Intent(getApplicationContext(), LoginActivity.class);
+//            startActivity(s);
 //        }
 
     }
@@ -98,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     private void logOutUser(){
         mFirebaseAuth.signOut();
 
-        Intent s = new Intent(getApplicationContext(), LogInSignUpButtonAcitivty.class);
+        Intent s = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(s);
     }
 

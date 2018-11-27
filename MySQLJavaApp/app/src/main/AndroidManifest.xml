@@ -64,7 +64,14 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".DashboardActivity" />
-        <activity android:name=".LogInSignUpButtonAcitivty"></activity>
+        <activity
+            android:name=".AuthUiActivity"
+            android:label="@string/title_activity_auth_ui"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SignUpActivity"
+            android:label="@string/title_activity_login2"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

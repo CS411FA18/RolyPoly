@@ -3,9 +3,13 @@ package com.cs411.RolyPoly;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -74,7 +78,7 @@ public class DrawerUtil {
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
-                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                    public boolean onItemClick(final View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem.getIdentifier() == 1 ) {
 //                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load tournament screen
@@ -116,9 +120,17 @@ public class DrawerUtil {
                             Toast.makeText(activity, "Signed Out", Toast.LENGTH_LONG).show();
 //                            MainActivity.launch(text);
 //                            Log.d(TAG, text);
-                            Intent intent = new Intent(activity, MainActivity.class);
-                            intent.putExtra("signOut", 1);
-                            view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
+                            AuthUI.getInstance()
+                                    .signOut(activity)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Intent intent = new Intent(activity, MainActivity.class);
+//                                            intent.putExtra("signOut", 1);
+                                            view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
+                                        }
+                                    });
+
                         }
                         return true;
                     }
