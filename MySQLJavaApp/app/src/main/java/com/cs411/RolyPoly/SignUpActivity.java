@@ -192,16 +192,16 @@ public class SignUpActivity extends AppCompatActivity {
                                 //Create a User in the database
                                 //For now we move onto the dashboard
                                 User user = new User(Integer.parseInt(UINText), FirstNameText, LastNameText, PersonType, CollegeText, emailText, Integer.parseInt(WeeklyGoalText));
-                                addNewUser(user);
+//                                addNewUser(user);
 
-                                while (addedNewUser == 0){
-//                                    showProgress(true);
-                                }
+//                                while (addedNewUser == 0){
+////                                    showProgress(true);
+//                                }
 
-                                if(addedNewUser == -1){
-                                    Toast.makeText(SignUpActivity.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
+//                                if(addedNewUser == -1){
+//                                    Toast.makeText(SignUpActivity.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
+//                                    return;
+//                                }
 
                                 System.out.println(user);
                                 Toast.makeText(SignUpActivity.this, "Registration is Successful", Toast.LENGTH_SHORT).show();
