@@ -192,7 +192,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 //Create a User in the database
                                 //For now we move onto the dashboard
                                 User user = new User(Integer.parseInt(UINText), FirstNameText, LastNameText, PersonType, CollegeText, emailText, Integer.parseInt(WeeklyGoalText));
-//                                addNewUser(user);
+                                addNewUser(user);
 
 //                                while (addedNewUser == 0){
 ////                                    showProgress(true);
