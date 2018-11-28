@@ -67,6 +67,7 @@ public class SearchForBikeActivity extends AppCompatActivity {
                             if ("0" == jsonObj.get("success")){
                                 searchResultTV.setText("Invalid TagID, Try Again!");
                             } else {
+                                System.out.println(response);
                                 searchResultTV.setText(Bike.jsonToString(jsonObj));
                             }
                         } catch (JSONException e) {

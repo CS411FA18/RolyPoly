@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dashboardImage"
         app:layout_constraintVertical_bias="0.192"
         app:max_value="100"
-        app:string_title="Your Weekly Ping Goal: 100"
+        app:string_title="Your Weekly Ping Total: "
         app:string_unit="Pings"
         app:total_engle="270" />
 
@@ -79,6 +79,20 @@
         android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+    <TextView
+        android:id="@+id/WeeklyGoalTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/arcProgressbar1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardImage" />
 
 
 </android.support.constraint.ConstraintLayout>
