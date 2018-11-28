@@ -51,4 +51,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:15.0.0'
     implementation 'com.google.firebase:firebase-core:15.0.0'
     implementation 'com.github.shinelw:library:1.0.1'
+    implementation 'com.android.support:recyclerview-v7:23.1.0'
 }

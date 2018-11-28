@@ -70,7 +70,6 @@ public class Node {
 
     public static String jsonToString(JSONObject jsonObject) throws JSONException {
         jsonObject = jsonObject.getJSONObject("data");
-//        System.out.println("Xcoord: " + jsonObject.get("XCoord"));
         return
                 "NodeID = " + jsonObject.get("NodeID") + '\n' +
                         "Xcoord = " + jsonObject.get("XCoord") + '\n' +
