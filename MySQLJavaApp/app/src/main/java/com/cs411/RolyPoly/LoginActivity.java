@@ -27,6 +27,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +68,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+
+    Integer loginSuccess;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +86,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    loginUser();
                     return true;
                 }
                 return false;
@@ -85,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                loginUser();
             }
         });
 
@@ -101,6 +113,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
     }
 
@@ -147,6 +161,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    public void loginUser(){
+        showProgress(true);
+        // Store values at the time of the login attempt.
+        String email = mEmailView.getText().toString();
+        String password = mPasswordView.getText().toString();
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            mUser = mAuth.getCurrentUser();
+                            showProgress(false);
+                            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                        }
+                        else {
+                            showProgress(false);
+                            Toast.makeText(getApplicationContext(), "Couldn't Login", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -191,7 +230,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
-        } else {
+        } else if (mUser == null){
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
@@ -325,29 +364,50 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
+//            for (String credential : DUMMY_CREDENTIALS) {
+//                String[] pieces = credential.split(":");
+//                if (pieces[0].equals(mEmail)) {
+//                    // Account exists, return true if the password matches.
+//                    return pieces[1].equals(mPassword);
+//                }
+//            }
+            for (String credential : DUMMY_CREDENTIALS){
                 String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
+                mAuth.signInWithEmailAndPassword(pieces[0], pieces[1])
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()){
+                                    mUser = mAuth.getCurrentUser();
+                                    loginSuccess = 1;
+                                    finish();
+                                }
+                                else {
+                                    Toast.makeText(getApplicationContext(), "Couldn't Login", Toast.LENGTH_SHORT).show();
+                                    loginSuccess = -1;
+                                }
+                            }
+                        });
+
             }
 
-            // TODO: register the new account here.
-            return true;
+        return true;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
+
             showProgress(false);
 
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
+//            if (loginSuccess == 1) {
+//                finish();
+//                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+//
+//            } else if (loginSuccess == -1){
+//                mEmailView.setError("Email or Password is incorrect");
+//                mPasswordView.requestFocus();
+//            }
         }
 
         @Override
