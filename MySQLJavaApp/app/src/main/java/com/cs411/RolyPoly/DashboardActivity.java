@@ -63,9 +63,8 @@ public class DashboardActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        if(mUser != null){
-            userEmail = mUser.getEmail();
-        }
+
+        userEmail = mUser.getEmail();
 
         getWeeklyGoal();
 
