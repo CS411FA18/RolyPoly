@@ -3,7 +3,6 @@ package com.cs411.RolyPoly;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,7 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
@@ -23,6 +22,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BikeList extends AppCompatActivity {
 
@@ -41,12 +42,12 @@ public class BikeList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bike_list);
 
-        bikeList = new ArrayList<Bike>();
-        jsonResults = new ArrayList<JSONObject>();
+        bikeList = new ArrayList<>();
+        jsonResults = new ArrayList<>();
 
         returnMain = findViewById(R.id.return_Main);
 
-        getAllBikes(getAllBikeURL);
+        getAllBikes();
 
         if(onResponse == 0){
             Toast.makeText(this,"Retrieving Information. Please wait...", Toast.LENGTH_SHORT).show();
@@ -66,82 +67,70 @@ public class BikeList extends AppCompatActivity {
     Only called inside the onResponse function of the requestQueue, that is so that the listview can be populated when the information from HTTP Reuqest is recieved.
      */
     private void showListView(){
-        ArrayAdapter<Bike> arrayAdapter = new ArrayAdapter<Bike>(this, R.layout.activity_bike_list_element, R.id.bikeText, bikeList);
+        ArrayAdapter<Bike> arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_bike_list_element, R.id.bikeText, bikeList);
 
-        ListView listView = (ListView) findViewById(R.id.Bike_List);
+        ListView listView = findViewById(R.id.Bike_List);
 
         listView.setAdapter(arrayAdapter);
 
-        System.out.println("Printing BikeList");
-        printBikeList();
-        System.out.println("After Printing BikeList");
-
-        return;
     }
 
-    private void printBikeList(){
-        for (int i = 0; i < bikeList.size(); i++){
-            System.out.println("Bike Serial Number: " + bikeList.get(i).serialNumber);
-        }
-    }
-
-    /*
-    This function sends the HTTP Get request to the database
-    Using Volley, it will send the request and  when it recieves a response it will populate the bikeList array and proceed to populate the ListView accordingly
-     */
-    private void getAllBikes(String URL) {
+    private void getAllBikes() {
         requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, (String) null,
-                new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getAllBikeURL,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String response) {
+                        JSONObject jsonObj;
                         try {
-                            JSONArray jsonArray = response.getJSONArray("results");
+                            jsonObj = new JSONObject(response);
+                            if ("0" == jsonObj.get("success")) {
+                                System.out.println("NO SUCCESS");
+                            } else {
+                                JSONArray jsonArray = jsonObj.getJSONArray("data");
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                jsonResults.add(jsonArray.getJSONObject(i));
+//                                for (int i = 0; i < jsonArray.length(); i++) {
+//                                    jsonResults.add(jsonArray.getJSONObject(i));
+//                                }
+
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    Gson gson = new Gson();
+
+                                    Bike bike = gson.fromJson(jsonObject.toString(), Bike.class);
+                                    bikeList.add(bike);
+                                }
+
+                                // Populate the ListView when information comes in
+//                                if(onResponse == 0){
+//                                    onResponse = 1;
+                                    showListView();
+//                                }
                             }
-//                            System.out.println("Printing JSON Array from inside getAllBikesFunction: ");
-//                            printJsonArray();
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Gson gson = new Gson();
-
-                                Bike bike = gson.fromJson(jsonObject.toString(), Bike.class);
-//                                System.out.println(bike.toString());
-                                bikeList.add(bike);
-                            }
-
-                            //Populate the ListView when information comes in
-                            if(onResponse == 0){
-                                onResponse = 1;
-                                showListView();
-                            }
-
-
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            System.out.println("JSON EXCEPTION: " + e);
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("Volley", "Error");
+                        System.out.println("VOLLEY ERROR String: " + error.toString());
+                        System.out.println("VOLLEY ERROR Message: " + error.getCause());
                     }
                 }
-        );
-        requestQueue.add(jsonObjectRequest);
-    }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                // TODO: use user's UIN
+                params.put("UIN", "673500000");
 
-    private void printJsonArray() {
-
-        for (int i = 0; i < jsonResults.size(); i++) {
-            JSONObject object = jsonResults.get(i);
-            System.out.println(object.toString());
-        }
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 }
 
