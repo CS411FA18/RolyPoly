@@ -81,36 +81,36 @@ public class DrawerUtil {
                     public boolean onItemClick(final View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem.getIdentifier() == 1 ) {
 //                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
-                            // load tournament screen
+                            // load Dashboard Screen
                             Intent intent = new Intent(activity, DashboardActivity.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 2 ) {
 //                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
-                            // load tournament screen
-                            Intent intent = new Intent(activity, DashboardActivity.class);
+                            // load Leaderboard screen
+                            Intent intent = new Intent(activity, LeaderboardActivity.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 3 ) {
 //                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
-                            // load tournament screen
+                            // load BikeManage screen
                             Intent intent = new Intent(activity, BikeManage.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 4 ) {
 //                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
-                            // load tournament screen
+                            // load NodeMap screen
                             Intent intent = new Intent(activity, YourTimeline.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 5) {
-                            // load tournament screen
+                            // load Account Settings screen
                             Toast.makeText(activity, R.string.settings, Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(activity, AccountActivity.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 6) {
-                            // load tournament screen
+                            // load About screen
                             Toast.makeText(activity, R.string.about, Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(activity, AboutActivity.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());

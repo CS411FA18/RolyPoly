@@ -130,4 +130,5 @@
     <string name="unknown_sign_in_response">Unknown Sign In Response</string>
     <string name="unknown_response">Unknown Response</string>
     <string name="title_activity_login2">LoginActivity2</string>
+    <string name="title_activity_leaderboard">LeaderboardActivity</string>
 </resources>
