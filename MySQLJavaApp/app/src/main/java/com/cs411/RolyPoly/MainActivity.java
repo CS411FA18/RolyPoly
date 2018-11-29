@@ -10,7 +10,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         else {
-           LoadDashboard.getUserInfo(getApplicationContext(), MainActivity.this, mUser.getEmail());
+            LoadDashboard.getUserInfo(getApplicationContext(), MainActivity.this, mUser.getEmail());
         }
     }
 

@@ -46,6 +46,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("DASHBOARD ACTIVITY");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
@@ -62,7 +63,7 @@ public class DashboardActivity extends AppCompatActivity {
         goalTextView = findViewById(R.id.WeeklyGoalTextView);
         goalTextView.setVisibility(View.INVISIBLE);
 
-        DrawerUtil.getDrawer(this, toolbar);
+        DrawerUtil.getDrawer(this, toolbar, user);
 
         getWeeklyGoal();
 

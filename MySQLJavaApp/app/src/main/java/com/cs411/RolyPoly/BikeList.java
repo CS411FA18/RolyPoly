@@ -37,10 +37,16 @@ public class BikeList extends AppCompatActivity {
 
     private Button returnMain;
 
+    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bike_list);
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        user = (User)bundle.getSerializable("user");
 
         bikeList = new ArrayList<>();
         jsonResults = new ArrayList<>();
@@ -57,6 +63,9 @@ public class BikeList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Bundle newBundle = new Bundle();
+                newBundle.putSerializable("user", user);
+                intent.putExtras(newBundle);
                 startActivity(intent);
             }
         });
@@ -117,9 +126,7 @@ public class BikeList extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                // TODO: use user's UIN
-                params.put("UIN", "673500000");
-
+                params.put("UIN", user.UIN.toString());
                 return params;
             }
         };

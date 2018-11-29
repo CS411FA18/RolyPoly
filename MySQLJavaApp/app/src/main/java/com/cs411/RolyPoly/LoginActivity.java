@@ -36,9 +36,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -168,6 +165,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     public void loginUser(){
+        System.out.println("LOGGING IN USER!!");
         showProgress(true);
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
@@ -193,8 +191,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             showProgress(false);
                             Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                             finish();
+                            System.out.println("LOGIN ACTIVITY");
 
                             LoadDashboard.getUserInfo(getApplicationContext(), LoginActivity.this, mUser.getEmail());
+
                         }
                         else {
                             showProgress(false);

@@ -19,7 +19,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 
 public class DrawerUtil {
-    public static void getDrawer(final Activity activity, android.support.v7.widget.Toolbar toolbar) {
+    public static void getDrawer(final Activity activity, android.support.v7.widget.Toolbar toolbar, final User user) {
         //if you want to update the items at a later time it is recommended to keep it in a variable
         PrimaryDrawerItem drawerEmptyItem= new PrimaryDrawerItem().withIdentifier(0).withName("");
         drawerEmptyItem.withEnabled(false);
@@ -83,36 +83,42 @@ public class DrawerUtil {
 //                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load Dashboard Screen
                             Intent intent = new Intent(activity, DashboardActivity.class);
+                            intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 2 ) {
 //                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load Leaderboard screen
                             Intent intent = new Intent(activity, LeaderboardActivity.class);
+                            intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 3 ) {
 //                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
                             // load BikeManage screen
                             Intent intent = new Intent(activity, BikeManage.class);
+                            intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 4 ) {
 //                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
                             // load NodeMap screen
                             Intent intent = new Intent(activity, YourTimeline.class);
+                            intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 5) {
                             // load Account Settings screen
                             Toast.makeText(activity, R.string.settings, Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(activity, AccountActivity.class);
+                            intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 6) {
                             // load About screen
                             Toast.makeText(activity, R.string.about, Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(activity, AboutActivity.class);
+                            intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 7) {

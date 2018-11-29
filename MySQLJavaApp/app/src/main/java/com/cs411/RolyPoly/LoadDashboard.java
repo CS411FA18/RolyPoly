@@ -23,6 +23,7 @@ public class LoadDashboard {
     private static final String getUserURL = "https://cs411fa18.web.illinois.edu/phpScripts/getUser.php";
 
     public static void getUserInfo(final Context appContext, final Activity activity, final String email) {
+        System.out.println("GETTING USER INFO");
         RequestQueue requestQueue = Volley.newRequestQueue(appContext);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, getUserURL,
@@ -35,6 +36,7 @@ public class LoadDashboard {
                             if ("0" == jsonObj.get("success")){
                                 System.out.println("Invalid email, Try Again!");
                             } else {
+                                System.out.println("RESPONSE:");
                                 System.out.println(response);
                                 JSONObject jsonUser = jsonObj.getJSONObject("data");
                                 Gson gson = new Gson();

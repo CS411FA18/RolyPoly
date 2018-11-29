@@ -1,5 +1,6 @@
 package com.cs411.RolyPoly;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -36,6 +37,10 @@ public class AccountActivity extends AppCompatActivity {
         toolbar.setTitle(getResources().getString(R.string.settings));
         setSupportActionBar(toolbar);
 
-        DrawerUtil.getDrawer(this, toolbar);
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        User user = (User)bundle.getSerializable("user");
+
+        DrawerUtil.getDrawer(this, toolbar, user);
     }
 }
