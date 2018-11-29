@@ -1,8 +1,14 @@
 package com.cs411.RolyPoly;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     @SerializedName("UIN")
     Integer UIN;
@@ -71,4 +77,11 @@ public class User {
                 ", weeklyGoal=" + weeklyGoal +
                 '}';
     }
+//
+//    public User(JSONObject jsonObj) {
+//        Gson gson = new Gson();
+//
+//        User user = gson.fromJson(jsonObj.toString(), User.class);
+//        this= user;
+//    }
 }

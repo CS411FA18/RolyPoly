@@ -90,10 +90,6 @@ public class BikeList extends AppCompatActivity {
                             } else {
                                 JSONArray jsonArray = jsonObj.getJSONArray("data");
 
-//                                for (int i = 0; i < jsonArray.length(); i++) {
-//                                    jsonResults.add(jsonArray.getJSONObject(i));
-//                                }
-
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     Gson gson = new Gson();
@@ -103,10 +99,7 @@ public class BikeList extends AppCompatActivity {
                                 }
 
                                 // Populate the ListView when information comes in
-//                                if(onResponse == 0){
-//                                    onResponse = 1;
-                                    showListView();
-//                                }
+                                showListView();
                             }
                         } catch (JSONException e) {
                             System.out.println("JSON EXCEPTION: " + e);

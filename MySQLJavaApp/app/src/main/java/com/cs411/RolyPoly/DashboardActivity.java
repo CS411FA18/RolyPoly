@@ -1,5 +1,6 @@
 package com.cs411.RolyPoly;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,8 +15,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.shinelw.library.ColorArcProgressBar;
 
 import org.json.JSONException;
@@ -32,9 +31,6 @@ public class DashboardActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_dashboard)
     public Toolbar toolbar;
 
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    String userEmail;
     Integer weeklyGoal;
     Integer curNumPings;
 
@@ -46,10 +42,17 @@ public class DashboardActivity extends AppCompatActivity {
     //ProgressBar imported from open source library
     public ColorArcProgressBar progressBar;
 
+    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+
+        user = (User)bundle.getSerializable("user");
 
         ButterKnife.bind(this);
 
@@ -60,11 +63,6 @@ public class DashboardActivity extends AppCompatActivity {
         goalTextView.setVisibility(View.INVISIBLE);
 
         DrawerUtil.getDrawer(this, toolbar);
-
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
-
-        userEmail = mUser.getEmail();
 
         getWeeklyGoal();
 
@@ -84,19 +82,14 @@ public class DashboardActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                             System.out.println("response: " + response);
-
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-//                            System.out.println("JSONObject" + jsonObject);
                             jsonObject = jsonObject.getJSONObject("data");
-//                            System.out.println("WeeklyGoal: " + jsonObject.get("WeeklyGoal"));
-//                            System.out.println("NumPings: " + jsonObject.get("NumPings"));
 
                             //get values from json object
-                            weeklyGoal = (Integer) jsonObject.get("WeeklyGoal");
+                            weeklyGoal = (Integer) jsonObject.get("WeeklyGoal"); // TODO: or from user.weeklyGoal?
                             curNumPings = Integer.parseInt((String) jsonObject.get("NumPings"));
 
                             //set values to progress bar
@@ -106,7 +99,7 @@ public class DashboardActivity extends AppCompatActivity {
                             //show Weekly Goal text view
                             goalTextView.setText("Your Weekly Goal: " + String.valueOf(weeklyGoal));
                             goalTextView.setVisibility(View.VISIBLE);
-//                            System.out.println("WeeklyGoal: " + weeklyGoal);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -128,12 +121,8 @@ public class DashboardActivity extends AppCompatActivity {
         {
             @Override
             protected Map<String, String> getParams() {
-
                 Map<String, String> params = new HashMap<>();
-                params.put("Email", userEmail);
-//                params.put("Email", "ot01@illinois.edu");
-
-
+                params.put("Email", user.email);
                 return params;
             }
         };

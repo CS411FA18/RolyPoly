@@ -297,7 +297,14 @@ public class SignUpActivity extends AppCompatActivity {
                         addedNewUser = 1;
 
                         Toast.makeText(SignUpActivity.this, "Registration is Successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("user", user);
+
+                        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                        intent.putExtras(bundle);
+
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {
