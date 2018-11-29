@@ -88,7 +88,7 @@ public class LeaderboardActivity extends AppCompatActivity {
                             JSONObject jsonResponseObject = new JSONObject(response);
                             JSONArray jsonArray = jsonResponseObject.getJSONArray("results");
 
-                            for (int i = 0; i < jsonArray.length(); i++){
+                            for (int i = 0; i < jsonArray.length() && i < 10; i++){
 //                                System.out.println("Rank Number " + String.valueOf(i) + ": " + jsonArray.getJSONObject(i));
 
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);

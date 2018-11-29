@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -68,7 +66,24 @@ public class SignUpActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private static final String addUserURL = "https://cs411fa18.web.illinois.edu/phpScripts/Create_User.php";
 
-    String[] dropdownListItems = new String[]{"College of Engineering", "College of Liberal Arts and Sciences", "College of Education"};
+    String[] dropdownListItems = new String[] {
+            "College of Agricultural, Consumer and Environmental Sciences",
+            "College of Applied Health Sciences",
+            "College of Education",
+            "College of Engineering",
+            "College of Fine and Applied Arts",
+            "Division of General Studies",
+            "Gies College of Business",
+            "Graduate College",
+            "School of Labor and Employment Relations",
+            "College of Law",
+            "College of Liberal Arts and Sciences",
+            "School of Information Sciences",
+            "College of Media",
+            "Carle Illinois College of Medicine",
+            "School of Social Work",
+            "College of Veterinary Medicine"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,15 +91,6 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         email = (EditText) findViewById(R.id.emailSignUp);
         password = (EditText) findViewById(R.id.passwordSignUp);
