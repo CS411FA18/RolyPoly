@@ -210,9 +210,6 @@ public class SignUpActivity extends AppCompatActivity {
 //                                }
 
                                 System.out.println(user);
-                                Toast.makeText(SignUpActivity.this, "Registration is Successful", Toast.LENGTH_SHORT).show();
-                                finish();
-                                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                             } else {
                                 Toast.makeText(SignUpActivity.this, "Couldn't Register, Try Again", Toast.LENGTH_SHORT).show();
                             }
@@ -232,6 +229,9 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         System.out.println("response: " + response);
                         addedNewUser = 1;
+
+                        Toast.makeText(SignUpActivity.this, "Registration is Successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                     }
                 },
                 new Response.ErrorListener() {
