@@ -33,11 +33,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
+
+//    private RequestQueue requestQueue;
+    private static final String isValidUINURL = "https://cs411fa18.web.illinois.edu/phpScripts/isValidUIN.php";
 
     private FirebaseAuth mAuth;
     private View mProgressView;
@@ -60,6 +66,8 @@ public class SignUpActivity extends AppCompatActivity {
     private String LastNameText;
     private String PersonType;
     private String CollegeText;
+
+    int isInvalid;
 
     private Integer addedNewUser = 0;
 
@@ -120,6 +128,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         addedNewUser = 0;
 
+//        isInvalid = ;
+
         dropdownList = (Spinner) findViewById(R.id.CollegeSpinnerList);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, dropdownListItems);
         dropdownList.setAdapter(adapter);
@@ -138,20 +148,75 @@ public class SignUpActivity extends AppCompatActivity {
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                emailText = email.getText().toString().trim();
+                passwordText = password.getText().toString().trim();
+                WeeklyGoalText = WeeklyGoal.getText().toString().trim();
+                FirstNameText = FirstName.getText().toString().trim();
+                LastNameText = LastName.getText().toString().trim();
+                UINText = UIN.getText().toString().trim();
+
                 if (v == button_register) {
-                    RegisterUser();
+                    isInvalidUIN();
                 }
             }
         });
     }
 
-    public void RegisterUser() {
-        emailText = email.getText().toString().trim();
-        passwordText = password.getText().toString().trim();
-        UINText = UIN.getText().toString().trim();
-        WeeklyGoalText = WeeklyGoal.getText().toString().trim();
-        FirstNameText = FirstName.getText().toString().trim();
-        LastNameText = LastName.getText().toString().trim();
+    public void isInvalidUIN() {
+        requestQueue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, isValidUINURL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        System.out.println("response: " + response);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            int isInvalid = (int) jsonObject.get("data");
+
+                            if (isInvalid == 1) {
+                                Toast.makeText(SignUpActivity.this, "This UIN already exists", Toast.LENGTH_SHORT).show();
+                                UIN.setError("This UIN already Exists");
+                                return;
+                            } else {
+                                registerUser();
+                            }
+                        } catch (JSONException e) {
+                            System.out.println("JSON Exception:");
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Volley", "Error: " +  error.getMessage());
+                        Log.e("Volley", error.toString());
+                        NetworkResponse response = error.networkResponse;
+                        if(response != null && response.data != null){
+                            String errorString = new String(response.data);
+                            Log.i("error:", errorString);
+                        }
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("UIN", UINText);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void registerUser() {
+        System.out.println("REGISTERING USER");
 
         if (TextUtils.isEmpty(emailText)) {
             Toast.makeText(this, "A Field is Empty", Toast.LENGTH_SHORT).show();
@@ -163,11 +228,17 @@ public class SignUpActivity extends AppCompatActivity {
             email.setError(getString(R.string.error_field_required));
             return;
         }
+
         if (TextUtils.isEmpty(UINText)) {
             Toast.makeText(this, "A Field is Empty", Toast.LENGTH_SHORT).show();
             UIN.setError(getString(R.string.error_field_required));
             return;
+        } else if (UINText.length() != 9) {
+            Toast.makeText(this, "UIN is Invalid", Toast.LENGTH_SHORT).show();
+            UIN.setError("UIN is Invalid");
+            return;
         }
+
         if (TextUtils.isEmpty(FirstNameText)) {
             Toast.makeText(this, "A Field is Empty", Toast.LENGTH_SHORT).show();
             FirstName.setError(getString(R.string.error_field_required));
@@ -181,11 +252,6 @@ public class SignUpActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(WeeklyGoalText)) {
             Toast.makeText(this, "A Field is Empty", Toast.LENGTH_SHORT).show();
             WeeklyGoal.setError(getString(R.string.error_field_required));
-            return;
-        }
-        if (UINText != null && UINText.length() != 9) {
-            Toast.makeText(this, "UIN is Invalid", Toast.LENGTH_SHORT).show();
-            UIN.setError("UIN is Invalid");
             return;
         }
 
