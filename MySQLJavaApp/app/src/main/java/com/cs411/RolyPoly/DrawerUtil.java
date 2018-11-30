@@ -82,7 +82,8 @@ public class DrawerUtil {
                         if (drawerItem.getIdentifier() == 3) {
 //                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
                             // load BikeManage screen
-                            Intent intent = new Intent(activity, BikeManage.class);
+//                            Intent intent = new Intent(activity, BikeManage.class);
+                            Intent intent = new Intent(activity, BikeList.class);
                             intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }

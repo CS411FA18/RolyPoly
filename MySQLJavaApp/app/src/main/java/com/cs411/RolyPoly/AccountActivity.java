@@ -7,20 +7,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AccountActivity extends AppCompatActivity {
-//    @BindView(R.id.toolbar_account_setting)
     @BindView(R.id.toolbar_account)
     public Toolbar toolbar;
 
-    Button editWeeklyGoal;
     Button editAccount;
-//    private Button editBike;
-//    private Button registerNewBike;
     TextView weeklyGoalTv;
     TextView firstNameTv;
     TextView lastNameTv;
@@ -57,6 +52,7 @@ public class AccountActivity extends AppCompatActivity {
         emailTv = findViewById(R.id.email_tv);
         phoneNumberTv = findViewById(R.id.phone_number_tv);
 
+//        weeklyGoalTv.setText(String.valueOf(user.weeklyGoal));
         weeklyGoalTv.setText(user.weeklyGoal.toString());
         firstNameTv.setText(user.firstName);
         lastNameTv.setText(user.lastName);
@@ -67,41 +63,15 @@ public class AccountActivity extends AppCompatActivity {
         emailTv.setText(user.email);
         phoneNumberTv.setText(user.phoneNumber);
 
-        editWeeklyGoal = findViewById(R.id.edit_weekly_goal);
         editAccount = findViewById(R.id.edit_account);
-//        editBike = findViewById(R.id.edit_bike);
-//        registerNewBike = findViewById(R.id.register_new_bike);
-
-        editWeeklyGoal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(AccountActivity.this, "Edit weekly goal", Toast.LENGTH_LONG).show();
-            }
-        });
-
         editAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(AccountActivity.this, "Edit account information", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), EditAccount.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
-
-//        editBike.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(AccountActivity.this, "Edit bike information", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//
-//        registerNewBike.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(AccountActivity.this, "Register a new bike", Toast.LENGTH_LONG).show();
-//            }
-//        });
 
     }
 }

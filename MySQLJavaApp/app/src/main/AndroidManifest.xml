@@ -39,7 +39,6 @@
         <activity android:name=".RemoveBikeActivity" />
         <activity android:name=".UpdateBikeActivity" />
         <activity android:name=".SearchForBikeActivity" />
-        <activity android:name=".BikeManage" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

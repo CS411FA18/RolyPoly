@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,17 +25,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class BikeList extends AppCompatActivity {
+    @BindView(R.id.toolbar_bike_list)
+    public Toolbar toolbar;
 
-    ArrayList<Bike> bikeList;
     private RequestQueue requestQueue;
-    ArrayList<JSONObject> jsonResults;
-
-    Integer onResponse = 0;
-
     private static final String getAllBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/ReadAll_Bike.php";
 
-    private Button returnMain;
+    ArrayList<Bike> bikeList;
+    ArrayList<JSONObject> jsonResults;
 
     User user;
 
@@ -44,27 +45,25 @@ public class BikeList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bike_list);
 
-        Bundle bundle = this.getIntent().getExtras();
+        final Bundle bundle = this.getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
+
+        ButterKnife.bind(this);
+        toolbar.setTitle(getResources().getString(R.string.account));
+        setSupportActionBar(toolbar);
+        DrawerUtil.getDrawer(this, toolbar, user);
 
         bikeList = new ArrayList<>();
         jsonResults = new ArrayList<>();
 
-        returnMain = findViewById(R.id.return_main);
-
         getAllBikes();
 
-        if(onResponse == 0){
-            Toast.makeText(this,"Retrieving Information. Please wait...", Toast.LENGTH_SHORT).show();
-        }
-
-        returnMain.setOnClickListener(new View.OnClickListener() {
+        Button addBike = findViewById(R.id.add_bike_button);
+        addBike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                Bundle newBundle = new Bundle();
-                newBundle.putSerializable("user", user);
-                intent.putExtras(newBundle);
+                Intent intent = new Intent(getApplicationContext(), addBikeActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -75,11 +74,10 @@ public class BikeList extends AppCompatActivity {
     Only called inside the onResponse function of the requestQueue, that is so that the listview can be populated when the information from HTTP Reuqest is recieved.
      */
     private void showListView(){
-        ArrayAdapter<Bike> arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_bike_list_element, R.id.bikeText, bikeList);
+       BikeAdapter bikeAdapter = new BikeAdapter(this, bikeList);
 
         ListView listView = findViewById(R.id.bike_list);
-
-        listView.setAdapter(arrayAdapter);
+        listView.setAdapter(bikeAdapter);
 
     }
 
