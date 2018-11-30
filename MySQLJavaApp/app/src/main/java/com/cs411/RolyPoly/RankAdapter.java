@@ -24,7 +24,7 @@ public class RankAdapter extends ArrayAdapter<RankStanding> {
         }
         // Lookup view for data population
         TextView userRank = (TextView) convertView.findViewById(R.id.leaderboard_rankNumb);
-        TextView userName = (TextView) convertView.findViewById(R.id.leaderboard_userName);
+        TextView userName = (TextView) convertView.findViewById(R.id.leaderboard_username);
         TextView userDept = (TextView) convertView.findViewById(R.id.leaderboard_dept);
         TextView userPingCount = (TextView) convertView.findViewById(R.id.leaderboard_pings);
 

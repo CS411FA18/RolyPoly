@@ -180,7 +180,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     private void showListView(){
         RankAdapter rankAdapter = new RankAdapter(this, rankingList);
 
-        ListView listView = findViewById(R.id.Bike_List);
+        ListView listView = findViewById(R.id.bike_list);
         listView.setAdapter(rankAdapter);
 
 //        TextView yourRankTextView = findViewById(R.id.yourRankText);

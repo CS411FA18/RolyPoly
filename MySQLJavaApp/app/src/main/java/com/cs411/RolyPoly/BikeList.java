@@ -78,7 +78,7 @@ public class BikeList extends AppCompatActivity {
     private void showListView(){
         ArrayAdapter<Bike> arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_bike_list_element, R.id.bikeText, bikeList);
 
-        ListView listView = findViewById(R.id.Bike_List);
+        ListView listView = findViewById(R.id.bike_list);
 
         listView.setAdapter(arrayAdapter);
 
