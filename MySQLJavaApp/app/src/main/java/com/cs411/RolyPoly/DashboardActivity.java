@@ -16,12 +16,17 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.shinelw.library.ColorArcProgressBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.threeten.bp.LocalDate;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -68,13 +73,22 @@ public class DashboardActivity extends AppCompatActivity {
 
         getWeeklyGoal();
 
-        //find the Progress Bar and set the Value to 50
         // SET THIS TO THE USERS CURRENT NUMBER OF PINGS
         // SET THE MAX VALUE TO USERS WEEKLY GOAL
         progressBar = (ColorArcProgressBar) findViewById(R.id.arcProgressbar1);
 
         progressBar.setCurrentValues(0);
 
+        MaterialCalendarView materialCalendarView = findViewById(R.id.calendarView);
+
+        final LocalDate localDate = LocalDate.now();
+        materialCalendarView.setCurrentDate(localDate);
+
+        Collection<CalendarDay> collection= new HashSet<>();
+        collection.add(CalendarDay.from(LocalDate.of(2018, 11, 25)));
+
+        EventDecorator eventDecorator = new EventDecorator(this, getResources().getColor(R.color.primary), collection);
+        materialCalendarView.addDecorator(eventDecorator);
     }
 
     public void getWeeklyGoal() {

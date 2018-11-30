@@ -131,4 +131,11 @@
     <string name="unknown_response">Unknown Response</string>
     <string name="title_activity_login2">LoginActivity2</string>
     <string name="title_activity_leaderboard">LeaderboardActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tabbed_dashboard">TabbedDashboardActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="avg_ping_day">Avg Pings/Day</string>
+    <string name="avg_ping_week">Avg Pings/Week</string>
 </resources>

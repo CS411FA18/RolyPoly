@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Tab1Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <com.shinelw.library.ColorArcProgressBar
+        android:id="@+id/tabbed_progress_bar"
+        android:layout_width="25dp"
+        android:layout_height="22dp"
+        android:layout_below="@+id/WeeklyGoalTextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:foregroundGravity="center"
+        app:back_color="@android:color/darker_gray"
+        app:back_width="12dp"
+        app:front_color1="@color/colorPrimary"
+        app:front_width="10dp"
+        app:is_need_content="true"
+        app:is_need_title="true"
+        app:is_need_unit="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WeeklyGoalTextView"
+        app:layout_constraintVertical_bias="0.036"
+        app:max_value="100"
+        app:string_title="Your Weekly Ping Total: "
+        app:string_unit="Pings"
+        app:total_engle="270" />
+
+    <TextView
+        android:id="@+id/WeeklyGoalTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.074" />
+
+    <View
+        android:id="@+id/myRectangleView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabbed_progress_bar"
+        app:layout_constraintVertical_bias="0.337" />
+
+    <View
+        android:id="@+id/myRectangleView2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myRectangleView"
+        app:layout_constraintVertical_bias="0.45" />
+
+    <TextView
+        android:id="@+id/ping_per_week_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/avg_ping_week"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView2"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView2"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView2"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView2"
+        app:layout_constraintVertical_bias="0.514" />
+
+    <TextView
+        android:id="@+id/avg_num_ping_week_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView2"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView2"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView2"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView2"
+        app:layout_constraintVertical_bias="0.514" />
+
+    <TextView
+        android:id="@+id/ping_per_day_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/avg_ping_day"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.748"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView"
+        app:layout_constraintVertical_bias="0.485" />
+
+    <TextView
+        android:id="@+id/avg_num_ping_day_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="@+id/myRectangleView"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleView"
+        app:layout_constraintVertical_bias="0.485" />
+
+
+</android.support.constraint.ConstraintLayout>

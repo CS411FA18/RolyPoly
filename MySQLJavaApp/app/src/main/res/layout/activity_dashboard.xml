@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.constraint.ConstraintLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,52 +9,17 @@
     tools:context=".DashboardActivity">
 
 
-    <ImageView
-        android:id="@+id/dashboardImage"
-        android:layout_width="259dp"
-        android:layout_height="98dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.114"
-        app:srcCompat="@drawable/rolypolytxt" />
-
-    <!--<TextView-->
-        <!--android:id="@+id/dashboard"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:text="DashBoard Main Menu"-->
-        <!--android:textSize="24sp"-->
-        <!--android:textStyle="bold"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.0" />-->
-
     <com.shinelw.library.ColorArcProgressBar
         android:id="@+id/arcProgressbar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="22dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:back_color="@android:color/darker_gray"
-        app:back_width="10dp"
+        app:back_width="12dp"
         app:front_color1="@color/colorPrimary"
         app:front_width="10dp"
         app:is_need_content="true"
@@ -63,9 +27,10 @@
         app:is_need_unit="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dashboardImage"
-        app:layout_constraintVertical_bias="0.192"
+        app:layout_constraintTop_toBottomOf="@+id/WeeklyGoalTextView"
+        app:layout_constraintVertical_bias="0.036"
         app:max_value="100"
         app:string_title="Your Weekly Ping Total: "
         app:string_unit="Pings"
@@ -89,10 +54,23 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/arcProgressbar1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dashboardImage" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_dashboard"
+        app:layout_constraintVertical_bias="0.021" />
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="294dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:mcv_selectionColor="#7A93DC"
+        app:mcv_showOtherDates="all" />
 
 
 </android.support.constraint.ConstraintLayout>

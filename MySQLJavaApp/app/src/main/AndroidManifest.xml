@@ -71,6 +71,10 @@
         <activity
             android:name=".LeaderboardActivity"
             android:label="@string/title_activity_leaderboard"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".TabbedDashboardActivity"
+            android:label="@string/title_activity_tabbed_dashboard"
             android:theme="@style/AppTheme"></activity>
     </application>
 

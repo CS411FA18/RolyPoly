@@ -36,52 +36,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             String mEmailAddress = mFirebaseUser.getEmail();
-            startActivity(new Intent(this, DashboardActivity.class));
+//            startActivity(new Intent(this, DashboardActivity.class));
+            startActivity(new Intent(this, TabbedDashboardActivity.class));
         }
-
-//        try {
-//            Bundle bundle = getIntent().getExtras();
-//            if(bundle != null){
-//                Integer text = bundle.getInt("signOut");
-//                if(text == 1){
-//                    Toast.makeText(getApplicationContext(), "Trying to Sign Out!", Toast.LENGTH_LONG).show();
-//                    logOutUser();
-//                }
-//            }
-//            else{
-//                instantiateUser();
-//                loginUser();
-//                refreshUser();
-//
-//                if(isUserSignedIn()){
-//                    Intent s = new Intent(getApplicationContext(), DashboardActivity.class);
-//                    startActivity(s);
-//                }
-//            }
-//        } catch (Exception e){
-//            e.printStackTrace();
-//            Toast.makeText(getApplicationContext(), "Exception", Toast.LENGTH_LONG).show();
-//        }
-
-//        instantiateUser();
-
-//        logOutUser();
-//
-//        if(isUserSignedIn()){
-//            logOutUser();
-//        }
-//        loginUser();
-//        refreshUser();
-//        if(!isUserSignedIn()) {
-//            loginUser();
-//        }
-//
-//        while (!isUserSignedIn());
-//
-//        if(isUserSignedIn()){
-//            Intent s = new Intent(getApplicationContext(), LoginActivity.class);
-//            startActivity(s);
-//        }
 
     }
 

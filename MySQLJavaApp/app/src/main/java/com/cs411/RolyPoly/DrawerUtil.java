@@ -82,7 +82,7 @@ public class DrawerUtil {
                         if (drawerItem.getIdentifier() == 1 ) {
 //                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load Dashboard Screen
-                            Intent intent = new Intent(activity, DashboardActivity.class);
+                            Intent intent = new Intent(activity, TabbedDashboardActivity.class);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 2 ) {
