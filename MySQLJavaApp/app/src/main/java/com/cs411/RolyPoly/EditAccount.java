@@ -6,17 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.autofill.AutofillValue;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,7 +21,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -182,7 +178,7 @@ public class EditAccount extends AppCompatActivity {
 
     public void updateUserOnDB() {
         requestQueue = Volley.newRequestQueue(this);
-        System.out.println("VOLLEY");
+//        System.out.println("VOLLEY");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, updateUserURL,
                 new Response.Listener<String>() {
                     @Override
@@ -194,7 +190,7 @@ public class EditAccount extends AppCompatActivity {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("user", user);
 
-                        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), TabbedDashboardActivity.class);
                         intent.putExtras(bundle);
 
                         startActivity(intent);

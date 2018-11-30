@@ -31,7 +31,6 @@ import java.util.Map;
  */
 public class Tab1Fragment extends Fragment {
 
-    Integer weeklyGoal;
     Float AvgPingPerDay;
     Float AvgPingPerWeek;
     Integer curNumPings;
@@ -77,7 +76,7 @@ public class Tab1Fragment extends Fragment {
 
         progressBar.setCurrentValues(0);
 
-        getWeeklyGoal();
+        getNumPings();
         getAvgPingsPerDay();
         getAvgPingsPerWeek();
 
@@ -86,7 +85,7 @@ public class Tab1Fragment extends Fragment {
 
     }
 
-    public void getWeeklyGoal() {
+    public void getNumPings() {
         requestQueue = Volley.newRequestQueue(getContext());
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, getWeeklyGoalURL,
@@ -94,28 +93,23 @@ public class Tab1Fragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
 
-                        System.out.println("response: " + response);
+//                        System.out.println("response: " + response);
 
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-//                            System.out.println("JSONObject" + jsonObject);
-                            jsonObject = jsonObject.getJSONObject("data");
-//                            System.out.println("WeeklyGoal: " + jsonObject.get("WeeklyGoal"));
-//                            System.out.println("NumPings: " + jsonObject.get("NumPings"));
 
                             //get values from json object
-                            weeklyGoal = (Integer) jsonObject.get("WeeklyGoal");
-                            curNumPings = Integer.parseInt((String) jsonObject.get("NumPings"));
+                            curNumPings = (Integer) jsonObject.get("data");
 
                             //set values to progress bar
+                            progressBar.setMaxValues(user.weeklyGoal);
                             progressBar.setCurrentValues(curNumPings);
-                            progressBar.setMaxValues(weeklyGoal);
+
 
                             //show Weekly Goal text view
-                            goalTextView.setText(String.valueOf(weeklyGoal));
+                            goalTextView.setText(String.valueOf(user.weeklyGoal));
                             goalTextView.setVisibility(View.VISIBLE);
-//                            System.out.println("WeeklyGoal: " + weeklyGoal);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -140,8 +134,6 @@ public class Tab1Fragment extends Fragment {
 
                 Map<String, String> params = new HashMap<>();
                 params.put("Email", user.email);
-//                params.put("Email", "ot01@illinois.edu");
-
 
                 return params;
             }
@@ -162,10 +154,6 @@ public class Tab1Fragment extends Fragment {
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-//                            System.out.println("JSONObject" + jsonObject);
-//                            jsonObject = jsonObject.getJSONObject("data");
-//                            System.out.println("WeeklyGoal: " + jsonObject.get("WeeklyGoal"));
-//                            System.out.println("NumPings: " + jsonObject.get("NumPings"));
 
                             //get values from json object
                             AvgPingPerDay = (Float) Float.valueOf((String)jsonObject.get("data"));
@@ -218,10 +206,6 @@ public class Tab1Fragment extends Fragment {
 
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
-//                            System.out.println("JSONObject" + jsonObject);
-//                                jsonObject = jsonObject.getJSONObject("data");
-//                            System.out.println("WeeklyGoal: " + jsonObject.get("WeeklyGoal"));
-//                            System.out.println("NumPings: " + jsonObject.get("NumPings"));
 
                                 //get values from json object
                                 AvgPingPerWeek = (Float) Float.valueOf((String) jsonObject.get("data"));
@@ -251,7 +235,6 @@ public class Tab1Fragment extends Fragment {
 
                     Map<String, String> params = new HashMap<>();
                     params.put("Email", user.email);
-//                params.put("Email", "ot01@illinois.edu");
 
 
                     return params;
