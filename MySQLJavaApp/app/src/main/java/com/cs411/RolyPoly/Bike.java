@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 public class Bike implements Parcelable {
 
+    @SerializedName("Nickname")
+    String nickname;
     @SerializedName("TagID")
     Integer tagID;
     @SerializedName("UIN")
@@ -30,7 +32,8 @@ public class Bike implements Parcelable {
     public Bike() {
     }
 
-    public Bike(Integer tagID, Integer UIN, String serialNumber, String bikeMake, String model, String bikeColor, String bikeDescription, String uniqueCharacteristics) {
+    public Bike(String nickname, Integer tagID, Integer UIN, String serialNumber, String bikeMake, String model, String bikeColor, String bikeDescription, String uniqueCharacteristics) {
+        this.nickname = nickname;
         this.tagID = tagID;
         this.UIN = UIN;
         this.serialNumber = serialNumber;
@@ -48,6 +51,7 @@ public class Bike implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nickname);
         dest.writeInt(tagID);
         dest.writeInt(UIN);
         dest.writeString(serialNumber);
@@ -69,6 +73,7 @@ public class Bike implements Parcelable {
     };
 
     public Bike(Parcel pc) {
+        nickname = pc.readString();
         tagID = pc.readInt();
         UIN = pc.readInt();
         serialNumber = pc.readString();

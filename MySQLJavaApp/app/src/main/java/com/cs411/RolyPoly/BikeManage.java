@@ -35,9 +35,6 @@ public class BikeManage extends AppCompatActivity {
 
     ArrayList<JSONObject> jsonResults;
 
-    private int count = 0;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_bike_manage);

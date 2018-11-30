@@ -1,5 +1,6 @@
 package com.cs411.RolyPoly;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,6 +26,7 @@ public class addBikeActivity extends AppCompatActivity {
 
     RequestQueue requestQueue;
     User user;
+    Bundle bundle;
 
     private Button addBikeButton;
     private EditText editSerialNum;
@@ -46,7 +48,7 @@ public class addBikeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bike);
 
-        Bundle bundle = this.getIntent().getExtras();
+        bundle = this.getIntent().getExtras();
         user = (User) bundle.getSerializable("user");
 
         editSerialNum = findViewById(R.id.SerialNumberText);
@@ -70,8 +72,20 @@ public class addBikeActivity extends AppCompatActivity {
                 addNewBike();
                 Toast toast = Toast.makeText(getApplicationContext(), "Added New Bike!", Toast.LENGTH_LONG);
                 toast.show();
+                finish();
+                Intent intent = new Intent(getApplicationContext(), BikeList.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent data = new Intent();
+        data.putExtras(bundle);
+        setResult(RESULT_OK, data);
+        super.onBackPressed();
     }
 
     private void addNewBike() {
@@ -111,6 +125,5 @@ public class addBikeActivity extends AppCompatActivity {
             }
         };
         requestQueue.add(stringRequest);
-
     }
 }

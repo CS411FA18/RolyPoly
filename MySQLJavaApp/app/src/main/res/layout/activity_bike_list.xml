@@ -7,6 +7,20 @@
     tools:context=".BikeList"
     android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_bike_list"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    <Button
+        android:id="@+id/add_bike_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="Add Bike" />
+
     <ListView
         android:id="@+id/bike_list"
         android:layout_width="match_parent"
@@ -15,10 +29,11 @@
         android:layout_marginBottom="8dp"
         android:padding="8dp" />
 
-    <Button
-        android:id="@+id/return_main"
-        android:text="Return to Main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+    <!--<Button-->
+        <!--android:id="@+id/return_main"-->
+        <!--android:text="Return to Main"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center" />-->
+
 </LinearLayout>
