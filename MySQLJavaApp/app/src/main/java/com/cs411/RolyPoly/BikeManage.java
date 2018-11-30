@@ -52,7 +52,7 @@ public class BikeManage extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final Bundle bundle = this.getIntent().getExtras();
-        final User user = (User)bundle.getSerializable("user");
+        final User user = (User) bundle.getSerializable("user");
 
         DrawerUtil.getDrawer(this, toolbar, user);
 
