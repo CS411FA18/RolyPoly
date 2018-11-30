@@ -110,6 +110,7 @@ public class DrawerUtil {
                         if (drawerItem.getIdentifier() == 5) {
                             // load Account Settings screen
                             Toast.makeText(activity, R.string.settings, Toast.LENGTH_LONG).show();
+                            System.out.println("DRAWER ACCOUNT SETTINGS");
                             Intent intent = new Intent(activity, AccountActivity.class);
                             intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());

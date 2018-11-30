@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_leaderboard">
 
     <ListView
-        android:id="@+id/Bike_List"
+        android:id="@+id/bike_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="8dp"

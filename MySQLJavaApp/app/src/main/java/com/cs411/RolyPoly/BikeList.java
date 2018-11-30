@@ -44,14 +44,13 @@ public class BikeList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bike_list);
 
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        user = (User)bundle.getSerializable("user");
+        Bundle bundle = this.getIntent().getExtras();
+        user = (User) bundle.getSerializable("user");
 
         bikeList = new ArrayList<>();
         jsonResults = new ArrayList<>();
 
-        returnMain = findViewById(R.id.return_Main);
+        returnMain = findViewById(R.id.return_main);
 
         getAllBikes();
 
@@ -78,7 +77,7 @@ public class BikeList extends AppCompatActivity {
     private void showListView(){
         ArrayAdapter<Bike> arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_bike_list_element, R.id.bikeText, bikeList);
 
-        ListView listView = findViewById(R.id.Bike_List);
+        ListView listView = findViewById(R.id.bike_list);
 
         listView.setAdapter(arrayAdapter);
 

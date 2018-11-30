@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <ListView
-        android:id="@+id/Bike_List"
+        android:id="@+id/bike_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -16,7 +16,7 @@
         android:padding="8dp" />
 
     <Button
-        android:id="@+id/return_Main"
+        android:id="@+id/return_main"
         android:text="Return to Main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

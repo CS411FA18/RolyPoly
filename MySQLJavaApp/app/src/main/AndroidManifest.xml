@@ -72,6 +72,9 @@
             android:name=".LeaderboardActivity"
             android:label="@string/title_activity_leaderboard"
             android:theme="@style/AppTheme"></activity>
+        <activity android:name=".EditAccount"
+            android:label="EditAccount"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
