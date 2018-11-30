@@ -8,13 +8,6 @@
         android:id="@+id/bike_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingHorizontal="8dp" />
-
-    <include
-        android:id="@+id/yourRankView"
-        layout="@layout/activity_rank_list_element"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_weight="1" />
 
 </LinearLayout>
