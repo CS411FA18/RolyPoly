@@ -27,11 +27,11 @@ public class DrawerUtil {
                 .withIdentifier(1).withName(R.string.dashboard).withIcon(R.drawable.ic_dashboard_black_24dp);
         PrimaryDrawerItem drawerItemLeaderboard = new PrimaryDrawerItem()
                 .withIdentifier(2).withName(R.string.leaderboard).withIcon(R.drawable.ic_person_black_24dp);
-        PrimaryDrawerItem drawerItemAccount = new PrimaryDrawerItem()
-                .withIdentifier(3).withName(R.string.account).withIcon(R.drawable.ic_directions_bike_black_24dp);
         PrimaryDrawerItem drawerItemTimeline = new PrimaryDrawerItem()
                 .withIdentifier(4).withName(R.string.node_map).withIcon(R.drawable.ic_map_black_24dp);
 
+        SecondaryDrawerItem drawerItemAccount = new SecondaryDrawerItem()
+                .withIdentifier(3).withName(R.string.account).withIcon(R.drawable.ic_directions_bike_black_24dp);
         SecondaryDrawerItem drawerItemSettings = new SecondaryDrawerItem()
                 .withIdentifier(5).withName(R.string.settings).withIcon(R.drawable.ic_settings_black_24dp);
         SecondaryDrawerItem drawerItemAbout = new SecondaryDrawerItem()
@@ -55,9 +55,9 @@ public class DrawerUtil {
                 .addDrawerItems(
                         drawerItemDashboard,
                         drawerItemLeaderboard,
-                        drawerItemAccount,
                         drawerItemTimeline,
                         new DividerDrawerItem(),
+                        drawerItemAccount,
                         drawerItemSettings,
                         drawerItemAbout,
                         drawerItemSignOut

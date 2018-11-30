@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BikeList"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".BikeList">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_bike_list"
@@ -19,21 +19,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:text="Add Bike" />
+        android:layout_marginVertical="8dp"
+        android:text="Register New Bike" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="8dp"
+        android:background="@color/primary_dark" />
 
     <ListView
         android:id="@+id/bike_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginBottom="8dp"
-        android:padding="8dp" />
-
-    <!--<Button-->
-        <!--android:id="@+id/return_main"-->
-        <!--android:text="Return to Main"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center" />-->
+        android:padding="8dp"
+        android:paddingHorizontal="16dp" />
 
 </LinearLayout>
