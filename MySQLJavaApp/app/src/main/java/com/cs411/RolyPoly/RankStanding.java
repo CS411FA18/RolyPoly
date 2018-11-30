@@ -15,7 +15,7 @@ public class RankStanding {
     private String lastName;
     @SerializedName("DeptName")
     private String deptName;
-    @SerializedName("This Week's Ping Count")
+    @SerializedName("PingCount")
     private Integer numPings;
 
     public RankStanding(Integer rankPosition, String firstName, String lastName, String deptName, Integer numPings) {

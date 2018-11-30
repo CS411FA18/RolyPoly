@@ -7,20 +7,20 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-public class TabbedDashboardActivity extends AppCompatActivity {
+public class TabbedLeaderboardActivity extends AppCompatActivity {
 
     User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tabbed_dashboard);
+        setContentView(R.layout.activity_tabbed_leaderboard);
 
         Bundle bundle = this.getIntent().getExtras();
         user = (User)bundle.getSerializable("user");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.dashboard));
+        toolbar.setTitle(getResources().getString(R.string.leaderboard));
         setSupportActionBar(toolbar);
 
         DrawerUtil.getDrawer(this, toolbar, user);
@@ -28,8 +28,9 @@ public class TabbedDashboardActivity extends AppCompatActivity {
         final TabLayout tabLayout =
                 (TabLayout) findViewById(R.id.tab_layout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Ping Info"));
-        tabLayout.addTab(tabLayout.newTab().setText("Calendar"));
+        tabLayout.addTab(tabLayout.newTab().setText("Week"));
+        tabLayout.addTab(tabLayout.newTab().setText("Month"));
+        tabLayout.addTab(tabLayout.newTab().setText("All-Time"));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -49,7 +50,7 @@ public class TabbedDashboardActivity extends AppCompatActivity {
             }
         });
 
-        final PagerAdapter adapter = new TabDashboardPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        final PagerAdapter adapter = new TabLeaderboardPageAdapater(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
 
         tabLayout.setOnTabSelectedListener(new
@@ -70,7 +71,7 @@ public class TabbedDashboardActivity extends AppCompatActivity {
                }
 
            });
-    }
 
+    }
 
 }

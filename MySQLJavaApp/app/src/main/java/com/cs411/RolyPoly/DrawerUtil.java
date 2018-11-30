@@ -75,7 +75,7 @@ public class DrawerUtil {
                         if (drawerItem.getIdentifier() == 2) {
 //                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load Leaderboard screen
-                            Intent intent = new Intent(activity, LeaderboardActivity.class);
+                            Intent intent = new Intent(activity, TabbedLeaderboardActivity.class);
                             intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
@@ -119,6 +119,7 @@ public class DrawerUtil {
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
+                                            activity.finish();
                                             Intent intent = new Intent(activity, MainActivity.class);
 //                                            intent.putExtra("signOut", 1);
                                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
