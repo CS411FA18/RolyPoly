@@ -21,11 +21,12 @@ import java.util.Map;
 
 public class addBikeActivity extends AppCompatActivity {
 
-    private RequestQueue requestQueue;
-    private Button addBikeButton;
     private static final String addBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/Create_Bike.php";
 
-    private EditText editUIN;
+    RequestQueue requestQueue;
+    User user;
+
+    private Button addBikeButton;
     private EditText editSerialNum;
     private EditText editMake;
     private EditText editModel;
@@ -33,7 +34,6 @@ public class addBikeActivity extends AppCompatActivity {
     private EditText editDescription;
     private EditText editUniqueCharacteristics;
 
-    String UINText;
     String SerialNumberText;
     String MakeText;
     String ModelText;
@@ -46,7 +46,9 @@ public class addBikeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bike);
 
-        editUIN = findViewById(R.id.UINText);
+        Bundle bundle = this.getIntent().getExtras();
+        user = (User) bundle.getSerializable("user");
+
         editSerialNum = findViewById(R.id.SerialNumberText);
         editMake = findViewById(R.id.MakeText);
         editModel = findViewById(R.id.ModelText);
@@ -58,7 +60,6 @@ public class addBikeActivity extends AppCompatActivity {
         addBikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UINText = editUIN.getText().toString();
                 SerialNumberText = editSerialNum.getText().toString();
                 MakeText = editMake.getText().toString();
                 ModelText = editModel.getText().toString();
@@ -98,7 +99,7 @@ public class addBikeActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("UIN", UINText);
+                params.put("UIN", user.UIN.toString());
                 params.put("SerialNumber", SerialNumberText);
                 params.put("Make", MakeText);
                 params.put("Model", ModelText);

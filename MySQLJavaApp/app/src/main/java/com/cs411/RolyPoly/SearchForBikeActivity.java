@@ -21,29 +21,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SearchForBikeActivity extends AppCompatActivity {
+    private static final String searchBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/Search_Bike.php";
 
     private Button searchButton;
-
     private EditText searchEdit;
+    private TextView searchResultTV;
 
     private String searchIDText;
 
-    private TextView searchResultTV;
-
-    private static final String searchBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/Search_Bike.php";
-
     RequestQueue requestQueue;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_for_bike);
-        searchButton = findViewById(R.id.searchButton);
+
+        Bundle bundle = this.getIntent().getExtras();
+        user = (User) bundle.getSerializable("user");
 
         searchEdit = findViewById(R.id.searchEdit);
-
         searchResultTV = findViewById(R.id.searchResultTV);
 
+        searchButton = findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +61,7 @@ public class SearchForBikeActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        JSONObject jsonObj = new JSONObject();
+                        JSONObject jsonObj;
                         try {
                             jsonObj = new JSONObject(response);
                             if ("0" == jsonObj.get("success")){
@@ -85,9 +85,8 @@ public class SearchForBikeActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-//                System.out.println(searchIDText);
                 params.put("TagID", searchIDText);
-
+                params.put("UIN", user.UIN.toString());
                 return params;
             }
         };
