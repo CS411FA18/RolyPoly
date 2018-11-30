@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class RankAdapter extends ArrayAdapter<RankStanding> {
+
     public RankAdapter(Context context, ArrayList<RankStanding> ranks){
         super(context, 0, ranks);
     }
