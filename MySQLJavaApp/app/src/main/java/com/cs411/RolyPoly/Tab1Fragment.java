@@ -113,7 +113,7 @@ public class Tab1Fragment extends Fragment {
                             progressBar.setMaxValues(weeklyGoal);
 
                             //show Weekly Goal text view
-                            goalTextView.setText("Your Weekly Goal: " + String.valueOf(weeklyGoal));
+                            goalTextView.setText(String.valueOf(weeklyGoal));
                             goalTextView.setVisibility(View.VISIBLE);
 //                            System.out.println("WeeklyGoal: " + weeklyGoal);
                         } catch (JSONException e) {
