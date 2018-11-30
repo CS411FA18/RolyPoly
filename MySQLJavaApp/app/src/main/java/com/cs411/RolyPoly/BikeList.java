@@ -37,15 +37,20 @@ public class BikeList extends AppCompatActivity {
 
     private Button returnMain;
 
+    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bike_list);
 
+        Bundle bundle = this.getIntent().getExtras();
+        user = (User) bundle.getSerializable("user");
+
         bikeList = new ArrayList<>();
         jsonResults = new ArrayList<>();
 
-        returnMain = findViewById(R.id.return_Main);
+        returnMain = findViewById(R.id.return_main);
 
         getAllBikes();
 
@@ -57,6 +62,9 @@ public class BikeList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Bundle newBundle = new Bundle();
+                newBundle.putSerializable("user", user);
+                intent.putExtras(newBundle);
                 startActivity(intent);
             }
         });
@@ -69,7 +77,7 @@ public class BikeList extends AppCompatActivity {
     private void showListView(){
         ArrayAdapter<Bike> arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_bike_list_element, R.id.bikeText, bikeList);
 
-        ListView listView = findViewById(R.id.Bike_List);
+        ListView listView = findViewById(R.id.bike_list);
 
         listView.setAdapter(arrayAdapter);
 
@@ -90,10 +98,6 @@ public class BikeList extends AppCompatActivity {
                             } else {
                                 JSONArray jsonArray = jsonObj.getJSONArray("data");
 
-//                                for (int i = 0; i < jsonArray.length(); i++) {
-//                                    jsonResults.add(jsonArray.getJSONObject(i));
-//                                }
-
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     Gson gson = new Gson();
@@ -103,10 +107,7 @@ public class BikeList extends AppCompatActivity {
                                 }
 
                                 // Populate the ListView when information comes in
-//                                if(onResponse == 0){
-//                                    onResponse = 1;
-                                    showListView();
-//                                }
+                                showListView();
                             }
                         } catch (JSONException e) {
                             System.out.println("JSON EXCEPTION: " + e);
@@ -124,9 +125,7 @@ public class BikeList extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                // TODO: use user's UIN
-                params.put("UIN", "673500000");
-
+                params.put("UIN", user.UIN.toString());
                 return params;
             }
         };

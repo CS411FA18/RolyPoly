@@ -1,5 +1,6 @@
 package com.cs411.RolyPoly;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +23,10 @@ public class AboutActivity extends AppCompatActivity {
         toolbar.setTitle(getResources().getString(R.string.about));
         setSupportActionBar(toolbar);
 
-        DrawerUtil.getDrawer(this, toolbar);
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        User user = (User)bundle.getSerializable("user");
+
+        DrawerUtil.getDrawer(this, toolbar, user);
     }
 }

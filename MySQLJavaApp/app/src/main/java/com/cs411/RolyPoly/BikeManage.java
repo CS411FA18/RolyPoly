@@ -51,7 +51,10 @@ public class BikeManage extends AppCompatActivity {
         toolbar.setTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(toolbar);
 
-        DrawerUtil.getDrawer(this, toolbar);
+        final Bundle bundle = this.getIntent().getExtras();
+        final User user = (User) bundle.getSerializable("user");
+
+        DrawerUtil.getDrawer(this, toolbar, user);
 
         getAll = findViewById(R.id.getAll);
 
@@ -60,14 +63,15 @@ public class BikeManage extends AppCompatActivity {
         deleteButton = findViewById(R.id.deleteButton);
         searchButton = findViewById(R.id.searchButtonMain);
 
-        jsonResults = new ArrayList<JSONObject>();
+        jsonResults = new ArrayList<>();
 
-        bikeList = new ArrayList<Bike>();
+        bikeList = new ArrayList<>();
 
         updateBikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UpdateBikeActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -76,6 +80,7 @@ public class BikeManage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SearchForBikeActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -84,6 +89,7 @@ public class BikeManage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RemoveBikeActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -92,6 +98,7 @@ public class BikeManage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), addBikeActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -99,11 +106,8 @@ public class BikeManage extends AppCompatActivity {
         getAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                printJsonArray();
-//                printBikeList();
-
                 Intent intent = new Intent(getApplicationContext(), BikeList.class);
-//                    intent.putParcelableArrayListExtra("BikeList", bikeList);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -111,8 +115,6 @@ public class BikeManage extends AppCompatActivity {
 
 
     private void printJsonArray() {
-//        int spacesToIndentEachLevel = 2;
-
         for (int i = 0; i < jsonResults.size(); i++) {
             JSONObject object = jsonResults.get(i);
             System.out.println(object.toString());

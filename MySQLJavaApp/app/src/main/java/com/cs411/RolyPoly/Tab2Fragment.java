@@ -1,6 +1,7 @@
 package com.cs411.RolyPoly;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -14,8 +15,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -37,8 +36,7 @@ import java.util.Map;
  */
 public class Tab2Fragment extends Fragment {
 
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
+    User user;
 
     HashSet<CalendarDay> calendarDayHashSet;
     MaterialCalendarView materialCalendarView;
@@ -61,8 +59,10 @@ public class Tab2Fragment extends Fragment {
         // Inflate the layout for this fragment
         View RootView = inflater.inflate(R.layout.fragment_tab2, container, false);
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
+        Intent intent = getActivity().getIntent();
+        Bundle bundle = intent.getExtras();
+
+        user = (User)bundle.getSerializable("user");
 
         calendarDayHashSet = new HashSet<>();
 
@@ -174,7 +174,7 @@ public class Tab2Fragment extends Fragment {
                 protected Map<String, String> getParams() {
 
                     Map<String, String> params = new HashMap<>();
-                    params.put("Email", mUser.getEmail());
+                    params.put("Email", user.email);
                     params.put("Month", String.valueOf(month));
                     params.put("Year", String.valueOf(year));
 //                    params.put("Email", "sw00@illinois.edu");

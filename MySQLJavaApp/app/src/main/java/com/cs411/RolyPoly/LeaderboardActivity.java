@@ -1,5 +1,6 @@
 package com.cs411.RolyPoly;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -55,9 +56,13 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        User user = (User)bundle.getSerializable("user");
+
         toolbar.setTitle(getResources().getString(R.string.leaderboard));
         setSupportActionBar(toolbar);
-        DrawerUtil.getDrawer(this, toolbar);
+        DrawerUtil.getDrawer(this, toolbar, user);
 
         jsonResults = new ArrayList<>();
         rankingList = new ArrayList<>();
@@ -175,7 +180,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     private void showListView(){
         RankAdapter rankAdapter = new RankAdapter(this, rankingList);
 
-        ListView listView = findViewById(R.id.Bike_List);
+        ListView listView = findViewById(R.id.bike_list);
         listView.setAdapter(rankAdapter);
 
 //        TextView yourRankTextView = findViewById(R.id.yourRankText);

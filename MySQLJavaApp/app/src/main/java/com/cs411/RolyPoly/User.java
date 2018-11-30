@@ -2,7 +2,12 @@ package com.cs411.RolyPoly;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     @SerializedName("UIN")
     Integer UIN;

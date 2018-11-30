@@ -1,6 +1,7 @@
 package com.cs411.RolyPoly;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,8 +17,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.shinelw.library.ColorArcProgressBar;
 
 import org.json.JSONException;
@@ -32,9 +31,6 @@ import java.util.Map;
  */
 public class Tab1Fragment extends Fragment {
 
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    String userEmail;
     Integer weeklyGoal;
     Float AvgPingPerDay;
     Float AvgPingPerWeek;
@@ -43,6 +39,8 @@ public class Tab1Fragment extends Fragment {
     TextView goalTextView;
     TextView avgNumPingsDayTextView;
     TextView avgNumPingsWeekTextView;
+
+    User user;
 
     private RequestQueue requestQueue;
     private static final String getWeeklyGoalURL = "https://cs411fa18.web.illinois.edu/phpScripts/getPingNumber.php";
@@ -64,10 +62,10 @@ public class Tab1Fragment extends Fragment {
 
         View RootView = inflater.inflate(R.layout.fragment_tab1, container, false);
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
+        Intent intent = getActivity().getIntent();
+        Bundle bundle = intent.getExtras();
 
-        userEmail = mUser.getEmail();
+        user = (User)bundle.getSerializable("user");
 
         goalTextView = RootView.findViewById(R.id.WeeklyGoalTextView);
         goalTextView.setVisibility(View.INVISIBLE);
@@ -141,7 +139,7 @@ public class Tab1Fragment extends Fragment {
             protected Map<String, String> getParams() {
 
                 Map<String, String> params = new HashMap<>();
-                params.put("Email", userEmail);
+                params.put("Email", user.email);
 //                params.put("Email", "ot01@illinois.edu");
 
 
@@ -197,7 +195,7 @@ public class Tab1Fragment extends Fragment {
             protected Map<String, String> getParams() {
 
                 Map<String, String> params = new HashMap<>();
-                params.put("Email", userEmail);
+                params.put("Email", user.email);
 //                params.put("Email", "ot01@illinois.edu");
 
 
@@ -252,7 +250,7 @@ public class Tab1Fragment extends Fragment {
                 protected Map<String, String> getParams() {
 
                     Map<String, String> params = new HashMap<>();
-                    params.put("Email", userEmail);
+                    params.put("Email", user.email);
 //                params.put("Email", "ot01@illinois.edu");
 
 

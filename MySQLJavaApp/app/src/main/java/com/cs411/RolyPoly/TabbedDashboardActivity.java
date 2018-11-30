@@ -9,16 +9,22 @@ import android.support.v7.widget.Toolbar;
 
 public class TabbedDashboardActivity extends AppCompatActivity {
 
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed_dashboard);
+
+        Bundle bundle = this.getIntent().getExtras();
+
+        user = (User)bundle.getSerializable("user");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.dashboard));
         setSupportActionBar(toolbar);
 
-        DrawerUtil.getDrawer(this, toolbar);
+        DrawerUtil.getDrawer(this, toolbar, user);
 
         final TabLayout tabLayout =
                 (TabLayout) findViewById(R.id.tab_layout);

@@ -29,7 +29,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -74,18 +73,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     Integer loginSuccess;
 
-    private RequestQueue requestQueue;
-    private static final String isValidUINURL = "https://cs411fa18.web.illinois.edu/phpScripts/isValidUIN.php";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = findViewById(R.id.email);
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -97,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +102,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mEmailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
+        Button mEmailSignUpButton = findViewById(R.id.email_sign_up_button);
         mEmailSignUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +116,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-
     }
 
     private void populateAutoComplete() {
@@ -166,10 +162,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     public void loginUser(){
+        System.out.println("LOGGING IN USER!!");
         showProgress(true);
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Email Field is Empty", Toast.LENGTH_SHORT).show();
+            mEmailView.setError(getString(R.string.error_field_required));
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Password Field is Empty", Toast.LENGTH_SHORT).show();
+            mPasswordView.setError(getString(R.string.error_field_required));
+            return;
+        }
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -180,7 +188,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             showProgress(false);
                             Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                             finish();
-                            startActivity(new Intent(getApplicationContext(), TabbedDashboardActivity.class));
+
+                            System.out.println("LOGIN ACTIVITY");
+
+                            LoadDashboard.getUserInfo(getApplicationContext(), LoginActivity.this, mUser.getEmail());
+
                         }
                         else {
                             showProgress(false);
@@ -188,69 +200,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         }
                     }
                 });
-    }
-
-
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else if (mUser == null){
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }
-    }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
     }
 
     /**
@@ -401,17 +350,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-
             showProgress(false);
-
-//            if (loginSuccess == 1) {
-//                finish();
-//                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
-//
-//            } else if (loginSuccess == -1){
-//                mEmailView.setError("Email or Password is incorrect");
-//                mPasswordView.requestFocus();
-//            }
         }
 
         @Override

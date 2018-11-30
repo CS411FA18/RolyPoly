@@ -12,37 +12,43 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class RemoveBikeActivity extends AppCompatActivity {
+    private static final String deleteBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/Delete_Bike.php";
 
     private Button deleteButton;
-
     private EditText EditTagID;
-    private String TagIDText;
-    private RequestQueue requestQueue;
 
-    private static final String deleteBikeURL = "https://cs411fa18.web.illinois.edu/phpScripts/Delete_Bike.php";
+    private String TagIDText;
+
+    private RequestQueue requestQueue;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remove_bike);
 
+        Bundle bundle = this.getIntent().getExtras();
+        user = (User) bundle.getSerializable("user");
+
         EditTagID = findViewById(R.id.TagID);
 
         deleteButton = findViewById(R.id.deleteButton);
-
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TagIDText = EditTagID.getText().toString();
                 deleteBike();
-
             }
         });
     }
@@ -54,18 +60,17 @@ public class RemoveBikeActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println("response:" + response);
+                        JSONObject jsonObj;
+                        try {
+                            jsonObj = new JSONObject(response);
 
-                        Toast toast2 = Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG);
-                        toast2.show();
-
-                        if(response == "success" + ":0," + "message" + ":" + "Bike not found") {
-                            Toast toast = Toast.makeText(getApplicationContext(), "Please Try Again with a Valid TagID", Toast.LENGTH_LONG);
-                            toast.show();
-                        }
-                        else if(response == "success" + ":1," + "message" + ":" + "Bike deleted successfully"){
-                            Toast toast = Toast.makeText(getApplicationContext(), "Bike Deleted Successfully!", Toast.LENGTH_LONG);
-                            toast.show();
+                            if(jsonObj.get("success").equals("0")){
+                                Toast.makeText(getApplicationContext(), "Invalid TagID. Try Again!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Bike Deleted Successfully!", Toast.LENGTH_SHORT).show();
+                            }
+                        }  catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
                 },
@@ -79,12 +84,12 @@ public class RemoveBikeActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                System.out.println(TagIDText);
                 params.put("TagID", TagIDText);
-
+                params.put("UIN", user.UIN.toString());
                 return params;
             }
         };
+
         requestQueue.add(stringRequest);
     }
 }

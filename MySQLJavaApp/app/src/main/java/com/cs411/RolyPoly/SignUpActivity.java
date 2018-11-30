@@ -42,7 +42,6 @@ import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
-//    private RequestQueue requestQueue;
     private static final String isValidUINURL = "https://cs411fa18.web.illinois.edu/phpScripts/isValidUIN.php";
 
     private FirebaseAuth mAuth;
@@ -67,31 +66,8 @@ public class SignUpActivity extends AppCompatActivity {
     private String PersonType;
     private String CollegeText;
 
-    int isInvalid;
-
-    private Integer addedNewUser = 0;
-
     private RequestQueue requestQueue;
     private static final String addUserURL = "https://cs411fa18.web.illinois.edu/phpScripts/Create_User.php";
-
-    String[] dropdownListItems = new String[] {
-            "College of Agricultural, Consumer and Environmental Sciences",
-            "College of Applied Health Sciences",
-            "College of Education",
-            "College of Engineering",
-            "College of Fine and Applied Arts",
-            "Division of General Studies",
-            "Gies College of Business",
-            "Graduate College",
-            "School of Labor and Employment Relations",
-            "College of Law",
-            "College of Liberal Arts and Sciences",
-            "School of Information Sciences",
-            "College of Media",
-            "Carle Illinois College of Medicine",
-            "School of Social Work",
-            "College of Veterinary Medicine"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,17 +102,13 @@ public class SignUpActivity extends AppCompatActivity {
         mProgressView = findViewById(R.id.sign_up_progress);
         mSignUpFormView = findViewById(R.id.sign_up_form);
 
-        addedNewUser = 0;
-
-//        isInvalid = ;
-
         dropdownList = (Spinner) findViewById(R.id.CollegeSpinnerList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, dropdownListItems);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, Common.dropdownListItems);
         dropdownList.setAdapter(adapter);
         dropdownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                CollegeText = dropdownListItems[position];
+                CollegeText = Common.dropdownListItems.get(position);
             }
 
             @Override
@@ -266,15 +238,6 @@ public class SignUpActivity extends AppCompatActivity {
                                 User user = new User(Integer.parseInt(UINText), FirstNameText, LastNameText, PersonType, CollegeText, emailText, Integer.parseInt(WeeklyGoalText));
                                 addNewUser(user);
 
-//                                while (addedNewUser == 0){
-////                                    showProgress(true);
-//                                }
-
-//                                if(addedNewUser == -1){
-//                                    Toast.makeText(SignUpActivity.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
-//                                    return;
-//                                }
-
                                 System.out.println(user);
                             } else {
                                 Toast.makeText(SignUpActivity.this, "Couldn't Register, Try Again", Toast.LENGTH_SHORT).show();
@@ -294,16 +257,21 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         System.out.println("response: " + response);
-                        addedNewUser = 1;
 
                         Toast.makeText(SignUpActivity.this, "Registration is Successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("user", user);
+
+                        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                        intent.putExtras(bundle);
+
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        addedNewUser = -1;
                         Log.e("Volley", error.toString());
 //                        NetworkResponse response = error.networkResponse;
 //                        if (response != null && response.data != null) {

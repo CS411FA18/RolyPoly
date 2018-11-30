@@ -76,6 +76,9 @@
             android:name=".TabbedDashboardActivity"
             android:label="@string/title_activity_tabbed_dashboard"
             android:theme="@style/AppTheme"></activity>
+        <activity android:name=".EditAccount"
+            android:label="EditAccount"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
