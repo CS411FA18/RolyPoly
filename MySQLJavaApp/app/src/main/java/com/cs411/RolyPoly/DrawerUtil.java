@@ -5,7 +5,6 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -66,29 +65,24 @@ public class DrawerUtil {
                     @Override
                     public boolean onItemClick(final View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem.getIdentifier() == 1) {
-//                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load Dashboard Screen
                             Intent intent = new Intent(activity, TabbedDashboardActivity.class);
                             intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 2) {
-//                            && !(activity instanceof MainActivity) add this for cannot switch to page that is already active
                             // load Leaderboard screen
                             Intent intent = new Intent(activity, TabbedLeaderboardActivity.class);
                             intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 3) {
-//                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
-                            // load BikeManage screen
-//                            Intent intent = new Intent(activity, BikeManage.class);
+                            // load BikeList screen
                             Intent intent = new Intent(activity, BikeList.class);
                             intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 4) {
-//                            && !(activity instanceof BikeManage) add this for cannot switch to page that is already active
                             // load NodeMap screen
                             Intent intent = new Intent(activity, YourTimeline.class);
                             intent.putExtra("user", user);
@@ -96,24 +90,18 @@ public class DrawerUtil {
                         }
                         if (drawerItem.getIdentifier() == 5) {
                             // load Account Settings screen
-                            Toast.makeText(activity, R.string.settings, Toast.LENGTH_LONG).show();
-                            System.out.println("DRAWER ACCOUNT SETTINGS");
                             Intent intent = new Intent(activity, AccountActivity.class);
                             intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 6) {
                             // load About screen
-                            Toast.makeText(activity, R.string.about, Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(activity, AboutActivity.class);
                             intent.putExtra("user", user);
                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                         }
                         if (drawerItem.getIdentifier() == 7) {
                             // load tournament screen
-                            Toast.makeText(activity, "Signed Out", Toast.LENGTH_LONG).show();
-//                            MainActivity.launch(text);
-//                            Log.d(TAG, text);
                             AuthUI.getInstance()
                                     .signOut(activity)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -121,7 +109,6 @@ public class DrawerUtil {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             activity.finish();
                                             Intent intent = new Intent(activity, MainActivity.class);
-//                                            intent.putExtra("signOut", 1);
                                             view.getContext().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
                                         }
                                     });
