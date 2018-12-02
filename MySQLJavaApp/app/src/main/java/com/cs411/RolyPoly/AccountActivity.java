@@ -59,7 +59,7 @@ public class AccountActivity extends AppCompatActivity {
         uinTv.setText(user.UIN.toString());
         userTypeTv.setText(user.userType);
         deptTv.setText(user.deptName);
-        addressTv.setText(user.address);
+        addressTv.setText(user.getCompleteAddress());
         emailTv.setText(user.email);
         phoneNumberTv.setText(user.phoneNumber);
 

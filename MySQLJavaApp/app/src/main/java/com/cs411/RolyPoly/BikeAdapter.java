@@ -50,7 +50,7 @@ public class BikeAdapter extends ArrayAdapter<Bike> {
         // TODO: display tagID?
         // TODO: display values for non mandatory fields - check profile view also
 
-        TextView nicknameTv = convertView.findViewById(R.id.nickname_tv);
+//        TextView nicknameTv = convertView.findViewById(R.id.nickname_tv);
         TextView serialNumberTv = convertView.findViewById(R.id.serial_number_tv);
         TextView makeTv = convertView.findViewById(R.id.make_tv);
         TextView modelTv = convertView.findViewById(R.id.model_tv);
@@ -59,7 +59,7 @@ public class BikeAdapter extends ArrayAdapter<Bike> {
         TextView uniqueCharsTv = convertView.findViewById(R.id.unique_chars_tv);
         Button deleteBike = convertView.findViewById(R.id.delete_bike_button);
 
-        nicknameTv.setText(bike.nickname);
+//        nicknameTv.setText(bike.nickname);
         serialNumberTv.setText(bike.serialNumber);
         makeTv.setText(bike.bikeMake);
         modelTv.setText(bike.model);

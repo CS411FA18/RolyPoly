@@ -76,4 +76,8 @@ public class User implements Serializable {
                 ", weeklyGoal=" + weeklyGoal +
                 '}';
     }
+
+    public String getCompleteAddress() {
+        return address + "\n" + city + ", " + state + " " + zip;
+    }
 }

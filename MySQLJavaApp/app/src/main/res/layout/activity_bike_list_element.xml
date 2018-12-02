@@ -23,29 +23,29 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="Nickname"
-                android:textStyle="bold" />
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginRight="2dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="end"-->
+                <!--android:text="Nickname"-->
+                <!--android:textStyle="bold" />-->
 
-            <TextView
-                android:id="@+id/nickname_tv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:text="Samantha's Bike" />
+            <!--<TextView-->
+                <!--android:id="@+id/nickname_tv"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="2dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Samantha's Bike" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
