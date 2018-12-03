@@ -263,7 +263,7 @@ public class SignUpActivity extends AppCompatActivity {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("user", user);
 
-                        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), TabbedDashboardActivity.class);
                         intent.putExtras(bundle);
 
                         startActivity(intent);
