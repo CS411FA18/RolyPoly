@@ -104,7 +104,7 @@ public class DashboardActivity extends AppCompatActivity {
                             jsonObject = jsonObject.getJSONObject("data");
 
                             //get values from json object
-                            weeklyGoal = (Integer) jsonObject.get("WeeklyGoal"); // TODO: or from user.weeklyGoal?
+                            weeklyGoal = user.weeklyGoal;
                             curNumPings = Integer.parseInt((String) jsonObject.get("NumPings"));
 
                             //set values to progress bar

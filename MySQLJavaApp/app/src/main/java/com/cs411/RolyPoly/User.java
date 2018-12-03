@@ -42,6 +42,10 @@ public class User implements Serializable {
         this.deptName = deptName;
         this.email = email;
         this.weeklyGoal = weeklyGoal;
+        this.address = "";
+        this.city = "";
+        this.state = "";
+        this.zip = 0;
     }
 
     public User(Integer UIN, String firstName, String lastName, String userType, String deptName, String address, String city, String state, Integer zip, String email, String phoneNumber, Integer weeklyGoal) {
